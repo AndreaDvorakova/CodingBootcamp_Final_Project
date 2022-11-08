@@ -1,0 +1,241 @@
+$pink: #ed3192;
+$blue: #1dbacc;
+$orange: #fedb0f;
+
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+// navigation style
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $blue;
+    padding: 0.5em;
+    &__logo {
+        width: 10%;
+        img {
+            width: 30%;
+            border-radius: 50%;
+        }
+    }
+
+    &__search-bar {
+        width: 60%;
+
+        input {
+            border: none;
+            border-radius: 55px;
+            width: 60%;
+            padding: 1%;
+            position: relative;
+        }
+        &_button {
+            position: absolute;
+            width: 6.5em;
+            border: none;
+            border-radius: 55px;
+            padding: 0.6%;
+            margin-left: -86px;
+            background-color: $pink;
+            color: white;
+        }
+    }
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        width: 15%;
+        justify-content: space-around;
+        button {
+            border: 1.2px solid $pink;
+            border-radius: 55px;
+            color: $pink;
+            background-color: white;
+            width: 6.5em;
+            padding: 2%;
+            font-weight: bold;
+        }
+    }
+}
+
+// hero image part style
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background-color: $orange;
+    &__left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        img {
+            width: 100%;
+        }
+        span {
+            font-size: x-small;
+        }
+    }
+    &__right {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    &__title {
+        color: white;
+        letter-spacing: 0.4em;
+        font-size: 1.9em;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+            1px 1px 0 #000;
+    }
+    &__paragraph {
+        padding: 4%;
+        width: 85%;
+        font-size: larger;
+        line-height: 1.6em;
+    }
+    &__button {
+        border: 1.2px solid $blue;
+        border-radius: 55px;
+        background-color: $blue;
+        color: white;
+        width: 12.5em;
+        padding: 1.6%;
+        font-weight: bolder;
+    }
+}
+
+// featured products styling
+
+.featured {
+    height: 80vh;
+}
+
+// newsletter styling
+
+.newsletter {
+    width: 100%;
+    height: 30vh;
+    background-color: $orange;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 4%;
+    &__left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        &_title {
+            color: white;
+            letter-spacing: 0.4em;
+            font-size: 1.5em;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+    }
+    &__right {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        position: relative;
+        &_input {
+            width: 55%;
+            border: 2px solid $blue;
+            border-radius: 55px;
+            position: absolute;
+            top: 0;
+            right: 40px;
+            padding: 1%;
+        }
+        &_button {
+            width: 15%;
+            background-color: $blue;
+            color: white;
+            border: none;
+            border-radius: 55px;
+            position: absolute;
+            top: 0;
+            right: 270px;
+            margin-right: -275px;
+            padding: 1%;
+        }
+    }
+}
+
+// products styling
+
+.products {
+    height: 200vh;
+}
+
+// footer styling
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    background-color: $blue;
+    height: 30vh;
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        margin-left: 4%;
+
+        &_logo {
+            width: 20%;
+            border-radius: 50%;
+        }
+    }
+    &__right {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+        margin-right: 4%;
+        &_social {
+            display: flex;
+            flex-direction: column;
+            &_icon {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+        &_icon {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        h5 {
+            color: white;
+            letter-spacing: 0.3em;
+            text-shadow: -1px -1px 0 $pink, 1px -1px 0 $pink, -1px 1px 0 $pink,
+                1px 1px 0 $pink;
+        }
+        p {
+            color: $pink;
+        }
+    }
+}
