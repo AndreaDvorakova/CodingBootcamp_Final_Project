@@ -22,5 +22,8 @@
             <button class="newsletter__right_button">Subscribe</button>
         </div>
     </div>
-    <div class="products"></div>
+    <div class="products" id="products"></div>
+
+    @viteReactRefresh
+    @vite('resources/js/drugs.jsx')
 @endsection

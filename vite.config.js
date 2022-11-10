@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/css/home-page.scss",
                 "resources/js/app.js",
+                "resources/js/drugs.jsx",
             ],
             refresh: true,
         }),
