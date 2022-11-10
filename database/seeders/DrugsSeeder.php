@@ -49,7 +49,7 @@ class DrugsSeeder extends Seeder
         $drug = new Drugs(["name"=> "STREPSILS HONEY & LEMON LOZENGES" ,"description" => "Strepsils Honey and Lemon Lozenges, contain a combination of two effective antiseptics (2, 4-Dichlorobenzyl alcohol 1.2mg, Amylmetacresol 0.6mg) to relieve the discomfort of sore throats in the soothing honey and lemon Lozenge format." , "image" => "STREPSILS_HONEY_LEMON.jpg" ]); 
         $drug->save();
 
-        $drug = new Drugs(["name"=> "Strepsils Extra Blackcurrant Lozenges" ,"description" => "If suffering from painful sore throat try Strepsils Extra Blackcurrant Lozenges containing Hexylresorcinol 2.4mg - an ingredient which is both antiseptic to fight throat infections but also has local anaesthetic properties to numb throat pain." , "image" => "STREPSILS_EXTRA_BLACKCURRENT.jpg" ]); 
+        $drug = new Drugs(["name"=> "Strepsils Extra Blackcurrant Lozenges" ,"description" => "If suffering from painful sore throat try Strepsils Extra Blackcurrant Lozenges containing Hexylresorcinol 2.4mg - an ingredient which is both antiseptic to fight throat infections but also has local anaesthetic properties to numb throat pain." , "image" => "STREPILS_EXTRA_BLACKCURRENT.jpg" ]); 
         $drug->save();
 
         $drug = new Drugs(["name"=> "STREPSILS PLUS ANAESTHETIC THROAT SPRAY
