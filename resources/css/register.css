@@ -172,7 +172,7 @@ body {
     color: #222;
     font-weight: 400;
     font-family: "Montserrat";
-    background-image: url("../images/rm373batch15-217-01-kqdjajvh.jpg");
+    background-image: url("/public/images/login-form-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     -moz-background-size: cover;
@@ -184,7 +184,7 @@ body {
 }
 
 .container {
-    width: 660px;
+    width: 600px;
     position: relative;
     margin: 0 auto;
 }

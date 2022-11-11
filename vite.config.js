@@ -10,6 +10,8 @@ export default defineConfig({
                 "resources/css/home-page.scss",
                 "resources/js/app.js",
                 "resources/js/drugs.jsx",
+                "resources/js/register.js",
+                "resources/css/resources.css",
             ],
             refresh: true,
         }),

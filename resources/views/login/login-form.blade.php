@@ -17,20 +17,12 @@
   <body>
     <div class="main">
       <section class="signup">
-       <!-- <img src="images/login-form-background.jpg" alt=""> -->
+        <!-- <img src="images/login-form-background.jpg" alt=""> -->
         <div class="container">
           <div class="signup-content">
             <form method="POST" id="signup-form" class="signup-form">
               <h2 class="form-title">Create account</h2>
               <div class="form-group">
-                <input
-                  type="text"
-                  class="form-input"
-                  name="name"
-                  id="name"
-                  placeholder="Your Name"
-                />
-              </div>
               <div class="form-group">
                 <input
                   type="email"
@@ -38,15 +30,6 @@
                   name="email"
                   id="email"
                   placeholder="Your Email"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="string"
-                  class="form-input"
-                  name="number"
-                  id="number"
-                  placeholder="Phone Number"
                 />
               </div>
               <div class="form-group">
@@ -63,40 +46,21 @@
                 ></span>
               </div>
               <div class="form-group">
+            <!-- Once clicked "Login", want to stay on the same page -->
                 <input
-                  type="password"
-                  class="form-input"
-                  name="re_password"
-                  id="re_password"
-                  placeholder="Repeat your password"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="checkbox"
-                  name="agree-term"
-                  id="agree-term"
-                  class="agree-term"
-                />
-                <label for="agree-term" class="label-agree-term"
-                  ><span><span></span></span>I agree all statements in
-                  <a href="#" class="term-service">Terms of service</a></label
-                >
-              </div>
-              <div class="form-group">
-                <input
+                  onClick="location.href='{{url('home')}}'"
                   type="submit"
                   name="submit"
                   id="submit"
                   class="form-submit"
-                  value="Sign up"
+                  value="Login"
                 />
               </div>
+              <p class="registerhere">
+                Don't Have An Acount?
+                <a href="#" class="registerhere-link">Register Here</a>
+              </p>
             </form>
-            <p class="loginhere">
-              Have already an account ?
-              <a href="#" class="loginhere-link">Login here</a>
-            </p>
           </div>
         </div>
       </section>
@@ -109,5 +73,3 @@
   </body>
 
 </html>
-
-

@@ -5,7 +5,7 @@
         <button class="navigation__search-bar_button">Search</button>
     </div>
     <div class="navigation__buttons">
-        <button>Login</button>
+        <button onClick="location.href='{{url('login')}}'">Login</button>
         <button>Your Cart</button>
     </div>
 
