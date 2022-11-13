@@ -7,7 +7,6 @@ export default function App() {
         const response = await fetch(`http://www.ipillgood.test/api/drugs`);
         const data = await response.json();
         setDrugs(data);
-        console.log(data);
     };
 
     useEffect(() => {
@@ -16,7 +15,7 @@ export default function App() {
 
     return (
         <>
-            {drugs.map((drug) => {
+            {drugs.map((drug, index) => {
                 return (
                     <div className="products__drug">
                         <h4 className="product__drug_title">{drug.name}</h4>
@@ -26,7 +25,10 @@ export default function App() {
                             alt={drug.name}
                         />
                         <a href={`/${drug.id}`}>
-                            <button className="product__drug_button">
+                            <button
+                                className="product__drug_button"
+                                key={index}
+                            >
                                 Check availability
                             </button>
                         </a>
