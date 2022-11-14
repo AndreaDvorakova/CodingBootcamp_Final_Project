@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('total_price');
             $table->foreignId('user_id');
             $table->foreignId('pharmacy_id');
+            $table->integer('sms_code');
+            $table->integer('order_status');
             $table->timestamps();
         });
     }

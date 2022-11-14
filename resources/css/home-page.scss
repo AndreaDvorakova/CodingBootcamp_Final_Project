@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 $pink: #ed3192;
 $blue: #1dbacc;
 $orange: #fedb0f;
@@ -44,14 +46,16 @@ body {
             position: relative;
         }
         &_button {
-            position: absolute;
-            width: 6.5em;
+            width: 60%;
             border: none;
-            border-radius: 55px;
-            padding: 0.6%;
-            margin-left: -86px;
-            background-color: $pink;
-            color: white;
+            background-color: white;
+            text-align: left;
+            padding: 3%;
+        }
+        &_image {
+            width: 50px;
+            height: 50px;
+            margin-right: 1%;
         }
     }
     &__buttons {
@@ -68,6 +72,18 @@ body {
             padding: 2%;
             font-weight: bold;
         }
+    }
+}
+
+#results {
+    position: absolute;
+    width: inherit;
+    border-radius: 5px;
+    height: 400px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        background: transparent; /* Chrome/Safari/Webkit */
+        width: 0px;
     }
 }
 

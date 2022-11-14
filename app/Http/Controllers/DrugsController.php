@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Drugs;
+use App\Models\Drug;
 use Illuminate\Http\Request;
 
 class DrugsController extends Controller
@@ -10,7 +10,7 @@ class DrugsController extends Controller
     public function index()
     {
 
-        $hero_drug = Drugs::findOrFail(2);
+        $hero_drug = Drug::findOrFail(2);
 
 
         return view('home-page', compact('hero_drug'));
@@ -18,7 +18,7 @@ class DrugsController extends Controller
 
     public function detail($id)
     {
-        $detail_drug = Drugs::findOrFail($id);
+        $detail_drug = Drug::findOrFail($id);
 
         return view('detail', compact('detail_drug'));
     }

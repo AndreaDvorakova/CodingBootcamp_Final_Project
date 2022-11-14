@@ -4,8 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Drug;
 
-class Basket_items extends Model
+class Pharmacy extends Model
 {
     use HasFactory;
+
+    public function Drugs()
+    {
+        $this->belongsToMany(Drug::class);
+    }
 }
