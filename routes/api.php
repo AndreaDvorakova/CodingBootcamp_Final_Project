@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\DrugsController;
+use App\Http\Controllers\Api\DrugController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/drugs', [DrugsController::class, 'index']);
+Route::get('/drugs', [DrugController::class, 'index']);
 
-Route::get('/drugs', [DrugsController::class, 'searchBar']);
+Route::get('/drugs', [DrugController::class, 'searchBar']);

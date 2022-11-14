@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Drug;
 
-class DrugsController extends Controller
+class DrugController extends Controller
 {
+
     public function index(Request $request)
     {
         $drugs = Drug::get();
@@ -18,9 +19,9 @@ class DrugsController extends Controller
     public function searchBar(Request $request)
     {
         if ($request->name) {
-            $drugs = Drug::where('name', 'LIKE', '%' . $request->name . '%')->get();
+            $drugs = Drug::where('name', 'LIKE', '%'.$request->name.'%')->get();
         } else {
-            $drugs = Drug::get();
+            $drugs = Drug::limit($request->limit)->offset($request->offset)->get();
         }
 
         return $drugs;
