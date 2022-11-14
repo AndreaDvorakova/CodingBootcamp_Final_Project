@@ -8,7 +8,7 @@
     @viteReactRefresh
     @vite('resources/js/search.jsx')
     <div class="navigation__buttons">
-        <button>Login</button>
+        <button onClick="location.href='{{url('login')}}'">Login</button>
         <button>Your Cart</button>
     </div>
 

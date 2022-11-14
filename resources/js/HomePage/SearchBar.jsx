@@ -49,7 +49,7 @@ const SearchBarDropdown = () => {
             <ul className="list-group" id="results" ref={ulRef}>
                 {drugs.map((drug, index) => {
                     return (
-                        <a href="#">
+                        <a href={`/drugs/${drug.id}/detail`}>
                             <button
                                 type="button"
                                 key={index}
