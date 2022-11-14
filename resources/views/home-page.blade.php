@@ -8,7 +8,7 @@
         <div class="hero__right">
             <h2 class="hero__title">{{$hero_drug->name}}</h2>
             <p class="hero__paragraph">{{Str::limit($hero_drug->description, 200)}}</p>
-            <a href='/{{$hero_drug->id}}'><button class="hero__button">Buy Now</button></a>
+            <a href='/drugs/{{$hero_drug->id}}/detail'><button class="hero__button">Buy Now</button></a>
         </div>
     </div>
     <div class=featured></div>
