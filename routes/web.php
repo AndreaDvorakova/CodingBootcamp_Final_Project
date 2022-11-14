@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\DrugsController;
+use App\Http\Controllers\DrugController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home', [DrugsController::class, 'index'])->name('home');
+Route::get('/home', [DrugController::class, 'index'])->name('home');
+
