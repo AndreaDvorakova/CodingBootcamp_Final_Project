@@ -63,3 +63,53 @@ body {
         line-height: 1.6em;
     }
 }
+
+.pharmacy {
+    width: 100%;
+    height: 1000px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &__basket {
+        height: 20%;
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        box-shadow: 1px 1px 20px lighten($pink, 30%);
+
+        &__name {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        &__order {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        &__button {
+            border: 1.2px solid $blue;
+            border-radius: 55px;
+            background-color: $blue;
+            color: white;
+            width: 12.5em;
+            height: 2em;
+            padding: 1.6%;
+            font-weight: bolder;
+        }
+    }
+}

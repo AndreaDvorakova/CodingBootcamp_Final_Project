@@ -7,7 +7,7 @@
     <div class="footer__right">
         <div class="footer__right_main">
             <h5>MAIN MENU</h5>
-            <p>Home</p>
+            <a href="/home"><p>Home</p></a>
             <p>Registration</p>
         </div>
         <div class="footer__right_company">
