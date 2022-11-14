@@ -8,15 +8,17 @@ use App\Models\Drug;
 
 class DrugsController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $drugs = Drug::get();
 
         return $drugs;
     }
 
-    public function searchBar(Request $request) {
+    public function searchBar(Request $request)
+    {
         if ($request->name) {
-            $drugs = Drug::where('name', 'LIKE', '%'.$request->name.'%')->get();
+            $drugs = Drug::where('name', 'LIKE', '%' . $request->name . '%')->get();
         } else {
             $drugs = Drug::get();
         }
