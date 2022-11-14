@@ -10,7 +10,6 @@ export default defineConfig({
                 "resources/css/home-page.scss",
                 "resources/js/app.js",
                 "resources/js/drugs.jsx",
-                "resources/js/search.jsx",
             ],
             refresh: true,
         }),
