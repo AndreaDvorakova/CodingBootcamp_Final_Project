@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('city');
             $table->string('address_line');
-            $table->integer('telephone_number');
+            $table->string('telephone_number');
             $table->string('work_hours_open_at');
             $table->string('work_hours_close_at');
             $table->string('lat');
