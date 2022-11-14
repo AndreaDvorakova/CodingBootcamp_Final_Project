@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(PharmaciesSeeder::class);
-        $this->call(DrugsSeeder::class);
+        $this->call(PharmacySeeder::class);
+        $this->call(DrugSeeder::class);
         $this->call(PharmacyItemsSeeder::class);
     }
 }

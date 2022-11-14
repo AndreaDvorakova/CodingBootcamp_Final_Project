@@ -10,7 +10,7 @@ class Pharmacy extends Model
 {
     use HasFactory;
 
-    public function Drugs()
+    public function drugs()
     {
         $this->belongsToMany(Drug::class);
     }

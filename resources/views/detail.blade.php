@@ -11,7 +11,7 @@
             {{-- <a href='/{{$detail_drug->id}}'><button class="detail__button">Buy Now</button></a> --}}
         </div>
     </div>
-    <div class=featured></div>
+    <div class=pharmacy_baskets></div>
     
     @viteReactRefresh
     @vite('resources/js/drugs.jsx')
