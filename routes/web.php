@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/home', [DrugsController::class, 'index'])->name('home');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/drugs/{id}/detail', [DrugsController::class, 'detail'])->name('detail');

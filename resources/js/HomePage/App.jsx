@@ -25,7 +25,7 @@ export default function App() {
                             src={`/images/drugs/${drug.image}`}
                             alt={drug.name}
                         />
-                        <a href={`/${drug.id}`}>
+                        <a href={`/drugs/${drug.id}/detail`}>
                             <button className="product__drug_button">
                                 Check availability
                             </button>
