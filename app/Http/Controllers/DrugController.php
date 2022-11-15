@@ -11,8 +11,11 @@ class DrugController extends Controller
     {
 
         $hero_drug = Drug::findOrFail(2);
+<<<<<<< HEAD
+=======
 
-        
+>>>>>>> main
+
         return view('home-page', compact('hero_drug'));
     }
 
@@ -21,5 +24,10 @@ class DrugController extends Controller
         $detail_drug = Drug::findOrFail($id);
 
         return view('detail', compact('detail_drug'));
+    }
+
+    public function confirmation() {
+        $order = [23456, '420 777 567 839']; 
+        return view('confirmation', compact('order'));
     }
 }

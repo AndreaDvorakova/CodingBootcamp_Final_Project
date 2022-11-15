@@ -13,4 +13,9 @@ class Pharmacy_item extends Model
     {
         $this->belongsToMany(Drug::class);
     }
+    
+    public function pharmacy()
+    {
+        return $this->belongsTo(Pharmacy::class);
+    }
 }
