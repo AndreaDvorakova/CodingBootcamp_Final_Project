@@ -46,6 +46,8 @@
                     <img class="item__img" src="/images/drugs/{{ $drug->image }}" alt="">
                     <h5>{{ $drug->name }}</h5>
                     <p>{{ $drug->pivot->drug_quantity }} quantity </p>
+                    <p class="item__description">{{ $drug->description }}</p>
+                    
                 </div>
             @endforeach
 
@@ -56,7 +58,11 @@
                 &#8250;
             </button>
 
-
+            {{-- <script>
+                $('item__img').click(function() {
+                    $('item__description', this).toggle();
+                });
+            </script> --}}
 
             <script>
                 const slidesContainer = document.getElementById("items");
