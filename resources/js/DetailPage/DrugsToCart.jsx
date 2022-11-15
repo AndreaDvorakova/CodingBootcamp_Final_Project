@@ -3,7 +3,7 @@ import Cart from "./Cart";
 import DetailPage from "./DetailPage";
 
 export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, addItemToCart, removeItemFromCart}) {
-  const [amountInCart, setAmountInCart] = useState(0);
+  const [amountInCart, setAmountInCart] = useState(1);
   const [price, setPrice] = useState(drugPrice);
 
   const addToCart = () => {
@@ -39,7 +39,7 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
               </div>
               <span>Price: {price}kc</span>
               
-              <button className="pharmacy__basket__button">{amountInCart ? `Add ${amountInCart + 1} To Cart`  : 'Add To Cart'}</button>                 
+              <button className="pharmacy__basket__button">{amountInCart > 1 ? `Add ${amountInCart}  To Cart`  : 'Add To Cart'}</button>                 
           </>
 
       )
