@@ -21,7 +21,7 @@
        <!-- <img src="images/login-form-background.jpg" alt=""> -->
         <div class="container">
           <div class="signup-content">
-            <form method="POST" id="signup-form" class="signup-form">
+            <form method="POST" action='/register' id="signup-form" class="signup-form">
                 @csrf
               <h2 class="form-title">Create account</h2>
               <div class="form-group">
@@ -31,6 +31,7 @@
                   name="name"
                   id="name"
                   placeholder="Your Name"
+                  value="{{ old('name') }}"
                 />
               </div>
               <div class="form-group">
@@ -40,6 +41,7 @@
                   name="email"
                   id="email"
                   placeholder="Your Email"
+                  value="{{ old('email') }}"
                 />
               </div>
               <div class="form-group">
@@ -58,6 +60,7 @@
                   name="password"
                   id="password"
                   placeholder="Password"
+                  value=""
                 />
                 <span
                   toggle="#password"
@@ -71,6 +74,7 @@
                   name="re_password"
                   id="re_password"
                   placeholder="Repeat your password"
+                  value=""
                 />
               </div>
               <div class="form-group">
