@@ -8,6 +8,7 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/css/home-page.scss",
+                "resources/css/confirmation.scss",
                 "resources/js/app.js",
                 "resources/js/drugs.jsx",
             ],
