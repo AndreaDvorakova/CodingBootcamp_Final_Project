@@ -12,6 +12,6 @@ class Pharmacy extends Model
 
     public function drugs()
     {
-        $this->belongsToMany(Drug::class);
+        return $this->belongsToMany(Drug::class,'pharmacy_items')->withPivot('drug_quantity','drug_price');
     }
 }
