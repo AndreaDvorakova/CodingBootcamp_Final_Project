@@ -6,6 +6,7 @@
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Image Slider" />
+    @yield('meta-tags')
     {{-- <link rel="stylesheet" href="css/home-page.scss"> --}}
     <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
     
