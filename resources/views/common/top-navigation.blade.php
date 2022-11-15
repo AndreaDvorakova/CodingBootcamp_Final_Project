@@ -1,5 +1,5 @@
 <nav class="navigation">
-    <div class="navigation__logo"><img class="navigation__img" src="/favicon.jpg" alt=""></div>
+    <div class="navigation__logo"><a href='/home'><img class="navigation__img" src="/favicon.jpg" alt="Company Logo"></a></div>
     <div class="navigation__search-bar" id="search-bar">
         
         {{-- <input type="text" placeholder="Search">
