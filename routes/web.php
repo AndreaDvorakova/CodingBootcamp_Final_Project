@@ -32,6 +32,6 @@ Route::get('/confirmation', [DrugController::class,'confirmation'])->name('confi
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/drugs/{id}/detail', [DrugsController::class, 'detail'])->name('detail');
+Route::get('/drugs/{id}/detail', [DrugController::class, 'detail'])->name('detail');
 Route::get('/pharmacy-page/{id}', [PharmacyController::class, 'index']);
 

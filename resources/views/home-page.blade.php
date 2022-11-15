@@ -1,4 +1,5 @@
-@extends('layouts.main')
+    @extends('layouts.main')
+    
 
 @section('content')
     <div class="hero">
@@ -11,7 +12,12 @@
             <a href='/drugs/{{$hero_drug->id}}/detail'><button class="hero__button">Buy Now</button></a>
         </div>
     </div>
-    <div class=featured></div>
+    
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+    </div>
+    
+    
     <div class="newsletter">
         <div class="newsletter__left">
             <h4 class="newsletter__left_title">NEWSLETTER</h4>
@@ -26,4 +32,8 @@
 
     @viteReactRefresh
     @vite('resources/js/drugs.jsx')
+    @vite('resources/js/carousel_entry.jsx')
+    
+    
+
 @endsection
