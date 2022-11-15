@@ -35,8 +35,3 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/drugs/{id}/detail', [DrugController::class, 'detail'])->name('detail');
 Route::get('/pharmacy-page/{id}', [PharmacyController::class, 'index']);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main

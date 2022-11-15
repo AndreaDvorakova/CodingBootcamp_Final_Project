@@ -11,10 +11,7 @@ class DrugController extends Controller
     {
 
         $hero_drug = Drug::findOrFail(2);
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 
         return view('home-page', compact('hero_drug'));
     }
