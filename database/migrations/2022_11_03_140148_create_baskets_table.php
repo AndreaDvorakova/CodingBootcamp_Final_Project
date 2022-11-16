@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('pharmacy_id');
             $table->integer('sms_code');
             $table->integer('order_status');
+            $table->string('expiration_date');
             $table->timestamps();
         });
     }
