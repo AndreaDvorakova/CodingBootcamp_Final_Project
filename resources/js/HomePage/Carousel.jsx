@@ -39,7 +39,7 @@ const Carousel = () => {
                         <rect width="100%" height="100%" fill="white" />
                     </svg>
 
-                    <div className="container">
+                    <div className="carusel_container">
                         <div className="carousel-caption text-start">
                             <img
                                 src="/images/drugs/STREPILS_EXTRA_BLACKCURRENT.jpg"
