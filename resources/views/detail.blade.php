@@ -38,6 +38,8 @@
         @endforeach --}}
     
     </div>
+
+    
     @viteReactRefresh
     @vite("resources/js/details.jsx")
 @endsection
