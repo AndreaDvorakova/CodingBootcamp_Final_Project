@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Drug;
+use App\Notifications\ReservationSuccessful;
+use Illuminate\Support\Facades\Auth;
 
 class DrugController extends Controller
 {
@@ -25,5 +27,18 @@ class DrugController extends Controller
         }
 
         return $drugs;
+    }
+
+        public function sendConfirmation()
+    {
+        $user = Auth::user();
+        
+        
+        if(!$user) {
+            return false;
+        }
+        
+
+        Notification::send($user, new ReservationSuccessful());
     }
 }
