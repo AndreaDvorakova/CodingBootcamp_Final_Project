@@ -29,7 +29,7 @@ Route::get('/', function () {
 Route::get('/home', [DrugController::class, 'index'])->name('home');
 Route::get('/confirmation', [DrugController::class, 'confirmation'])->name('confirmation');
 
-// Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/drugs/{id}/detail', [DrugController::class, 'detail'])->name('detail');
