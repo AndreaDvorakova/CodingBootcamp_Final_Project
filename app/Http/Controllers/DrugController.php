@@ -10,7 +10,7 @@ class DrugController extends Controller
     public function index()
     {
 
-        $hero_drug = Drug::findOrFail(2);
+        $hero_drug = Drug::findOrFail(1);
 
 
         return view('home-page', compact('hero_drug'));
