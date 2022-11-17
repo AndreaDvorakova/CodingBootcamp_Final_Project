@@ -18,9 +18,11 @@ return new class extends Migration
             $table->integer('total_price');
             $table->foreignId('user_id');
             $table->foreignId('pharmacy_id');
-            $table->integer('sms_code');
-            $table->integer('order_status');
-            $table->string('expiration_date');
+            $table->integer('sms_code')->nullable();
+            $table->integer('order_status')->nullable();
+            $table->string('expiration_date')->nullable();
+            $table->integer('drug_price');
+            $table->integer('drug_quantity');
             $table->timestamps();
         });
     }
