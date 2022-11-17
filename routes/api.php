@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\BasketItemController;
 use App\Http\Controllers\Api\DrugController;
 use App\Http\Controllers\Api\PharmacyController;
 use App\Http\Controllers\Api\PharmacyItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BasketController;
 
 
 /*
@@ -31,4 +31,4 @@ Route::get('/pharmacies', [PharmacyController::class, 'index']);
 Route::get('/pharmacy-items/{id}', [PharmacyItemController::class, 'index']);
 // Route::get('/pharmacy-items/{id}', [PharmacyItemController::class, 'show']);
 
-Route::post('/api/add-to-cart', [BasketItemController::class, 'addToCart']);
+// Route::post('/add-to-cart', [BasketController::class, 'addToCart']);

@@ -65,7 +65,7 @@ export default function DetailPage() {
                             <span className="pharmacy__basket__city">{pharmacyItem.pharmacy.city}</span>
                             <span className="pharmacy__basket__telephone">{pharmacyItem.pharmacy.telephone_number}</span>
                         </span> 
-                        <span className="pharmacy__basket__hours">Hours: <br />{pharmacyItem.pharmacy.work_hours_open_at} - {pharmacyItem.pharmacy.work_hours_close_at}</span>
+                        <span className="pharmacy__basket__hours">Hours: {pharmacyItem.pharmacy.work_hours_open_at} - {pharmacyItem.pharmacy.work_hours_close_at}</span>
                         <div className="pharmacy__basket__order">
                             <DrugsToCart 
                                 key={pharmacyItem.id}
@@ -74,7 +74,9 @@ export default function DetailPage() {
                                 drugQuantity={pharmacyItem.drug_quantity}
                                 cartItems={cart.length}
                                 addItemToCart={addItemToCart}
-                                removeItemFromCart={removeItemFromCart} />
+                                removeItemFromCart={removeItemFromCart} 
+                                pharmacy_id={pharmacyItem.pharmacy.id}/>
+                                
 
                         </div>
                    </div>             

@@ -4,6 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
     <title>Register</title>
+
+    {{ \Auth::id() ?? 'not signed in' }}
   
     <!-- Font Icon -->
     <link
@@ -21,7 +23,7 @@
        <!-- <img src="images/login-form-background.jpg" alt=""> -->
         <div class="container">
           <div class="signup-content">
-            <form method="POST" id="signup-form" class="signup-form">
+            <form method="POST" action='/register' id="signup-form" class="signup-form">
                 @csrf
               <h2 class="form-title">Create account</h2>
               <div class="form-group">
@@ -31,6 +33,7 @@
                   name="name"
                   id="name"
                   placeholder="Your Name"
+                  value="{{ old('name') }}"
                 />
               </div>
               <div class="form-group">
@@ -40,6 +43,7 @@
                   name="email"
                   id="email"
                   placeholder="Your Email"
+                  value="{{ old('email') }}"
                 />
               </div>
               <div class="form-group">
@@ -58,6 +62,7 @@
                   name="password"
                   id="password"
                   placeholder="Password"
+                  value=""
                 />
                 <span
                   toggle="#password"
@@ -68,9 +73,10 @@
                 <input
                   type="password"
                   class="form-input"
-                  name="re_password"
-                  id="re_password"
+                  name="password_confirmation"
+                  id="password_confirmation"
                   placeholder="Repeat your password"
+                  value=""
                 />
               </div>
               <div class="form-group">
