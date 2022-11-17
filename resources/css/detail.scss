@@ -95,6 +95,15 @@ h2 {
         &__name {
             display: flex;
             flex-direction: column;
+            width: 25%;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        &__hours {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
             justify-content: space-around;
             align-items: flex-start;
         }

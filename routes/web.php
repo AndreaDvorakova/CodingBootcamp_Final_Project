@@ -1,13 +1,13 @@
 <?php
 
-
+use App\Http\Controllers\Api\DrugController as ApiDrugController;
 use App\Http\Controllers\DrugController;
 
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PharmacyController;
-use App\Http\Controllers\PharmacyItemController;
 use App\Http\Controllers\RegisterController;
 
 
@@ -28,10 +28,17 @@ Route::get('/', function () {
 
 
 Route::get('/home', [DrugController::class, 'index'])->name('home');
-Route::get('/confirmation', [DrugController::class,'confirmation'])->name('confirmation');
+Route::get('/confirmation', [DrugController::class, 'confirmation'])->name('confirmation');
+Route::view('/terms', 'terms-and-conditions');
+Route::get('/sendConfirmation', [DrugController::class, 'confirmation']);
+Route::get('newsletter', [NewsletterController::class, 'index']);
+Route::post('newsletter/store', [NewsletterController::class, 'store']);
+
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/drugs/{id}/detail', [DrugController::class, 'detail'])->name('detail');
 Route::get('/pharmacy-page/{id}', [PharmacyController::class, 'index']);
+
+// Route::view('/register', )

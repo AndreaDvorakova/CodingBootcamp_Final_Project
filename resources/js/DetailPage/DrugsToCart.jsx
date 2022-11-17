@@ -5,6 +5,7 @@ import DetailPage from "./DetailPage";
 export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, addItemToCart, removeItemFromCart}) {
   const [amountInCart, setAmountInCart] = useState(1);
   const [price, setPrice] = useState(drugPrice);
+  const [inStock, setInStock] = useState(drugQuantity);
 
   const addToCart = () => {
       setAmountInCart(Math.min(drugQuantity, amountInCart + 1));
@@ -16,6 +17,8 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
         setPrice(price + drugPrice);
 
       } 
+      // set the stock amoount to zero if stock runs out
+      setInStock(Math.max(0, inStock - 1));
   }
 
   const removeFromCart = () => {
@@ -24,6 +27,8 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
       removeItemFromCart(drug.id)
 
       setPrice(Math.max(drugPrice, price - drugPrice))
+
+      setInStock(Math.min(drugQuantity, inStock + 1));
   }
 
 
@@ -32,7 +37,7 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
 
           <>
               
-              In Stock: {drugQuantity}pcs
+              In Stock: {inStock}pcs
               <div className="pharmacy__basket__order-to-cart">
                 <button className="pharmacy__basket__order__remove" onClick={ removeFromCart }>-</button>
                 <button className="pharmacy__basket__order__add" onClick={ addToCart }>+</button> 

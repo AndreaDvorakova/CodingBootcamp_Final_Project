@@ -8,7 +8,7 @@
     <meta name="description" content="Image Slider" />
     @yield('meta-tags')
     {{-- <link rel="stylesheet" href="css/home-page.scss"> --}}
-    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
     
     <title>I Pill Good</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">

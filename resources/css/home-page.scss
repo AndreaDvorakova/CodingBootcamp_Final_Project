@@ -324,8 +324,20 @@ body {
             text-shadow: -1px -1px 0 $pink, 1px -1px 0 $pink, -1px 1px 0 $pink,
                 1px 1px 0 $pink;
         }
+        a {
+            text-decoration: none;
+        }
         p {
             color: $pink;
         }
     }
+}
+
+// terms and conditions styling
+
+.terms {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }

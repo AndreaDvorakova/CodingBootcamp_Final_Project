@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/css/home-page.scss",
                 "resources/css/confirmation.scss",
                 "resources/css/carousel.scss",
+                "resources/css/pharmacy-page.scss",
                 "resources/js/app.js",
                 "resources/js/drugs.jsx",
                 "resources/js/carousel_entry.jsx",
