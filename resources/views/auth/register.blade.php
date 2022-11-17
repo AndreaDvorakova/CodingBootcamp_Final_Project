@@ -4,6 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
     <title>Register</title>
+
+    {{ \Auth::id() ?? 'not signed in' }}
   
     <!-- Font Icon -->
     <link
@@ -71,8 +73,8 @@
                 <input
                   type="password"
                   class="form-input"
-                  name="re_password"
-                  id="re_password"
+                  name="password_confirmation"
+                  id="password_confirmation"
                   placeholder="Repeat your password"
                   value=""
                 />

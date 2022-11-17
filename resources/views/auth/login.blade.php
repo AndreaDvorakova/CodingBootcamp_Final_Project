@@ -48,17 +48,6 @@
                   class="zmdi zmdi-eye field-icon toggle-password"
                 ></span>
               </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-input"
-                  name="re_password"
-                  id="re_password"
-                  placeholder="Repeat your password"
-                  value=""
-                />
-              </div>
-              <div class="form-group">
             <!-- Once clicked "Login", want to stay on the same page -->
                 <input
                   onClick="location.href='{{url('home')}}'"
