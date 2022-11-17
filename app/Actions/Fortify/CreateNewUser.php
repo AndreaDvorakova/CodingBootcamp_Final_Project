@@ -30,7 +30,6 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            // 're_password' => $this->passwordRules(),
             'number' => ['required', 'string'],
         ])->validate();
 
