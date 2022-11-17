@@ -5,20 +5,39 @@
 @endsection
 
 @section('content')
-@vite('resources/css/detail.scss')
+    @vite('resources/css/detail.scss')
+
+    {{-- <select name="">
+        @foreach ($cities as $city)
+            <option value="{{$city->id}}">{{$city->name}}</option>
+        @endforeach
+
+    </select> --}}
+
+
+
     <div class="detail">
         <div class="detail__left">
-            <img src="/images/drugs/{{$detail_drug->image}}" alt=""><br></div>
+            <img src="/images/drugs/{{ $detail_drug->image }}" alt=""><br>
+        </div>
         <div class="detail__right">
-            <h2 class="detail__title">{{$detail_drug->name}}</h2>
-            <p class="detail__paragraph">{{Str::limit($detail_drug->description, 300)}}</p>
+            <h2 class="detail__title">{{ $detail_drug->name }}</h2>
+            <p class="detail__paragraph">{{ Str::limit($detail_drug->description, 300) }}</p>
             {{-- <a href='/{{$detail_drug->id}}'><button class="detail__button">Buy Now</button></a> --}}
         </div>
     </div>
     {{-- {{dd($detail_drug->pharmacies)}} --}}
     <h2>Pharmacies</h2>
+
+
+    <div class="drop-list">
+        droplist
+
+    </div> 
+
+
     <div class="pharmacy" id="pharmacy__baskets">
-        
+
         {{-- @foreach ($detail_drug->pharmacies as $basket)
             <div class="pharmacy__basket">
                 <span class="pharmacy__basket__name"><a href='/pharmacy-page/{{$basket->id}}'><h4>{{$basket->name}}</h4></a>
@@ -36,11 +55,10 @@
             </div>
             <hr>
         @endforeach --}}
-    
+
     </div>
 
-    
-    @viteReactRefresh
-    @vite("resources/js/details.jsx")
-@endsection
 
+    @viteReactRefresh
+    @vite('resources/js/details.jsx')
+@endsection
