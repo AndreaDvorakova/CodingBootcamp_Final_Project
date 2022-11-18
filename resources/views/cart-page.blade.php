@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
-<div id="cart"></div>
+@vite('resources/css/cart-page.scss')
+<div class="carts" id="carts"></div>
 
 @viteReactRefresh
 @vite("resources/js/cart.jsx")

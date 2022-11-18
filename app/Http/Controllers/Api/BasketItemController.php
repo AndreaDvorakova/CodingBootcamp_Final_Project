@@ -22,40 +22,41 @@ class BasketItemController extends Controller
             $quantity = $request->quantity;
             $pharmacy_id = $request->pharmacy_id;
             $basketItem = new BasketItem;
-            $basketItem->user_id = $user_id;
-            // $basketItem->basket_id = $basket_id;
-            $basketItem->drug_id = $drug_id;
-            $basketItem->drug_price = $drug_price;
-            $basketItem->quantity = $quantity;
-            $basketItem->pharmacy_id = $pharmacy_id;
-            $basketItem->save();
+
+            $drugCheck = Drug::where('id', $drug_id)->first();
+            // dd($request);
+            if ($drugCheck) {
+                // check to see if item is already added to the cart
+                if (BasketItem::where('drug_id', $drug_id)->where('pharmacy_id', $pharmacy_id)->where('user_id', $user_id)->exists()) {
+                    return response()->json([
+                        'status' => 409,
+                        'message' => $drugCheck->name . 'Already added to cart',
+                    ]);
+                } else {
+                    $basketItem->user_id = $user_id;
+                    // $basketItem->basket_id = $basket_id;
+                    $basketItem->drug_id = $drug_id;
+                    $basketItem->drug_price = $drug_price;
+                    $basketItem->quantity = $quantity;
+                    $basketItem->pharmacy_id = $pharmacy_id;
+                    $basketItem->save();
+
+                    return response()->json([
+                        'status' => 201,
+                        'message' => 'Added to Cart',
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Product not found',
+                ]);
+            }
+
             return response()->json([
                 'status' => 201,
-                'message' => 'Added to Cart',
+                'message' => 'Cart',
             ]);
-
-            // $drugCheck = Drug::where('id', $drug_id)->first();
-            // // dd($request);
-            // if ($drugCheck) {
-            //     if (BasketItem::where('drug_id', $drug_id)->where('pharmacy_id', $pharmacy_id)->where('user_id', $user_id)->exists()) {
-            //         return response()->json([
-            //             'status' => 409,
-            //             'message' => $drugCheck->name . 'Already added to cart',
-            //         ]);
-            //     } else {
-
-            //     }
-            // } else {
-            //     return response()->json([
-            //         'status' => 404,
-            //         'message' => 'Product not found',
-            //     ]);
-            // }
-
-            // return response()->json([
-            //     'status' => 201,
-            //     'message' => 'Cart',
-            // ]);
         } else {
             return response()->json([
                 'status' => 401,
