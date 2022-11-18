@@ -109,7 +109,9 @@ export default function DetailPage() {
                                 drugQuantity={pharmacyItem.drug_quantity}
                                 cartItems={cart.length}
                                 addItemToCart={addItemToCart}
-                                removeItemFromCart={removeItemFromCart} />
+                                removeItemFromCart={removeItemFromCart} 
+                                pharmacy_id={pharmacyItem.pharmacy.id}/>
+                                
 
                         </div>
                    </div>             

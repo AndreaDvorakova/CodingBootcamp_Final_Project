@@ -9,7 +9,10 @@
             <div class="footer__right_main">
                 <h5>MAIN MENU</h5>
                 <a href="/home"><p>Home</p></a>
-                <a href="/register"><p>Registration</p></a>
+                <a class="nav-link" 
+                    style="cursor: pointer"
+                    data-toggle="modal" 
+                    data-target="#registerModal"><p>{{ __('Register') }}</p></a>
             </div>
             <div class="footer__right_company">
                 <h5>COMPANY</h5>
