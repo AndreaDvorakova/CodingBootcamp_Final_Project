@@ -1,8 +1,10 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import Cart from "./Cart";
-import DetailPage from "./DetailPage";
+// import Cart from "./Cart";
+// import DetailPage from "./DetailPage";
 
-export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, addItemToCart, removeItemFromCart}) {
+export default function DrugsToCart(props) {
+  const {cartItems, drug, drugPrice, drugQuantity, addItemToCart, removeItemFromCart, pharmacy_id} = props;
   const [amountInCart, setAmountInCart] = useState(1);
   const [price, setPrice] = useState(drugPrice);
   const [inStock, setInStock] = useState(drugQuantity);
@@ -30,7 +32,30 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
 
       setInStock(Math.min(drugQuantity, inStock + 1));
   }
+  // onClick will submit the current items to the Baskets table in the database and will use that to display on the cart page.
+  const submitAddToCart = (e) => {
+    e.preventDefault();
 
+    const data = {
+      // basket_id: pharmacy_id,
+      drug_id: drug,
+      drug_price: drugPrice,
+      quantity: amountInCart,
+      pharmacy_id: pharmacy_id,
+    }
+
+    axios.post('/add-to-cart', data).then(res => {
+      if(res.data.status === 201){
+        swal("Success",res.data.message,"success");
+      }else if(res.data.status === 409){
+        swal("Warning",res.data.message,"warning");
+      }else if(res.data.status === 401){
+        swal("Error",res.data.message,"error");
+      }else if(res.data.status === 404){
+        swal("Warning",res.data.message,"warning");
+      }
+    });
+  }
 
 
       return (
@@ -44,7 +69,7 @@ export default function DrugsToCart({cartItems, drug, drugPrice, drugQuantity, a
               </div>
               <span>Price: {price}kc</span>
               
-              <button className="pharmacy__basket__button">{amountInCart > 1 ? `Add ${amountInCart}  To Cart`  : 'Add To Cart'}</button>                 
+              <button className="pharmacy__basket__button" onClick={submitAddToCart}>{amountInCart > 1 ? `Add ${amountInCart}  To Cart`  : 'Add To Cart'}</button>                 
           </>
 
       )

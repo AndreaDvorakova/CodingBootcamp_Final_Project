@@ -30,6 +30,14 @@
         
     
         <button>Your Cart</button>
+
+    </div>
+
+    <div class="navigation__buttons_mobile">
+        <a onClick="location.href='{{url('login')}}'"><img src="/login_icon.png" alt="Login button"></a>
+        <a href="#" ><img src="/cart_icon.png" alt="Cart button"></a>
+    </div>
+
     </div>
 
     <div class="navigation__buttons_mobile">
