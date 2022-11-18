@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Drug;
 use App\Notifications\ReservationSuccessful;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewsletterEmail;
+use App\Mail\TestEmail;
+
 
 class DrugController extends Controller
 {
@@ -23,7 +27,7 @@ class DrugController extends Controller
         if ($request->name) {
             $drugs = Drug::where('name', 'LIKE', '%'.$request->name.'%')->get();
         } else {
-            $drugs = Drug::limit($request->limit)->offset($request->offset)->get();
+            $drugs = Drug::offset($request->offset)->limit($request->limit)->get();
         }
 
         return $drugs;
@@ -40,5 +44,16 @@ class DrugController extends Controller
         
 
         Notification::send($user, new ReservationSuccessful());
+    }
+
+public function sendTestEmail() {
+
+        // $data = 'This is data';
+
+        Mail::to('test@test.com')
+            // ->cc('copy@example.com')
+            // ->bcc('hidden_copy@example.com')
+            ->send(new TestEmail());
+
     }
 }

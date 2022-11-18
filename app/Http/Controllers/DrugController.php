@@ -27,4 +27,10 @@ class DrugController extends Controller
         $order = [23456, '420 777 567 839']; 
         return view('confirmation', compact('order'));
     }
+
+
+
+
+        
+    
 }
