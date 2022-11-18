@@ -37,10 +37,10 @@ export default function DrugsToCart(props) {
     e.preventDefault();
 
     const data = {
+      // basket_id: pharmacy_id,
       drug_id: drug,
       drug_price: drugPrice,
-      drug_quantity: amountInCart,
-      total_price: price,
+      quantity: amountInCart,
       pharmacy_id: pharmacy_id,
     }
 

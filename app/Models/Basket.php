@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Drug;
+use App\Models\Pharmacy;
 
 class Basket extends Model
 {
     use HasFactory;
-    protected $table = 'baskets';
-    protected $fillable = [
-        'total_price',
-        'user_id',
-        'pharmacy_id',
-        'drug_price',
-        'drug_quantity',
-    ];
-    public function Drugs()
-    {
-        $this->belongsToMany(Drug::class);
-    }
+
+    // public function drugs()
+    // {
+    //     return $this->hasMany(Drug::class, 'id', 'drug_id');
+    // }
+
+    // public function pharmacy()
+    // {
+    //     return $this->belongsTo(Pharmacy::class);
+    // }
 }

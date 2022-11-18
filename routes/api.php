@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\PharmacyController;
 use App\Http\Controllers\Api\PharmacyItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\BasketController;
+use App\Http\Controllers\Api\BasketItemController;
 
 
 /*
@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/drugs', [DrugController::class, 'index']);
 Route::get('/drugs', [DrugController::class, 'searchBar']);
+Route::get('/sendTestEmail', [DrugController::class, 'sendTestEmail']);
 
 Route::get('/pharmacies', [PharmacyController::class, 'index']);
 
@@ -32,3 +33,4 @@ Route::get('/pharmacy-items/{id}', [PharmacyItemController::class, 'index']);
 // Route::get('/pharmacy-items/{id}', [PharmacyItemController::class, 'show']);
 
 // Route::post('/add-to-cart', [BasketController::class, 'addToCart']);
+Route::get('/cart', [BasketItemController::class, 'show']);

@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('basket_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('basket_id');
-            $table->foreignId('drug_id');
+            $table->foreignId('basket_id')->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('drug_id')->nullable();
+            $table->foreignId('pharmacy_id');
             $table->integer('quantity');
+            $table->integer('drug_price');
             $table->timestamps();
         });
     }
