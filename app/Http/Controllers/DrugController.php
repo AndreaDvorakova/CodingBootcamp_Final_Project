@@ -36,4 +36,5 @@ class DrugController extends Controller
         
     //     return view('detail', compact('cities'));
     // }
+
 }

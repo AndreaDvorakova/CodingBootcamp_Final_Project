@@ -31,6 +31,7 @@ Route::get('/home', [DrugController::class, 'index'])->name('home');
 Route::get('/confirmation', [DrugController::class, 'confirmation'])->name('confirmation');
 Route::view('/terms', 'terms-and-conditions');
 Route::get('/sendConfirmation', [DrugController::class, 'confirmation']);
+
 Route::get('newsletter', [NewsletterController::class, 'index']);
 Route::post('newsletter/store', [NewsletterController::class, 'store']);
 

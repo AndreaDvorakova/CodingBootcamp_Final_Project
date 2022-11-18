@@ -14,6 +14,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/drugs.jsx",
                 "resources/js/carousel_entry.jsx",
+                "resources/js/newsletter_entry.jsx",
                 "resources/js/details.jsx",
             ],
             refresh: true,

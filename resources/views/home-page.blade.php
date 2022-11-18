@@ -23,9 +23,9 @@
             <h4 class="newsletter__left_title">NEWSLETTER</h4>
             <p class="newsletter__left_paragraph">Sign up here to get the latest news, updates and special offers.</p>
         </div>
-        <div class=newsletter__right>
-            <input class="newsletter__right_input" type="text" placeholder="email address">
-            <button class="newsletter__right_button">Subscribe</button>
+        <div class=newsletter__right id="newsletter">
+            {{-- <input class="newsletter__right_input" type="text" placeholder="email address">
+            <button class="newsletter__right_button">Subscribe</button> --}}
         </div>
     </div>
     <div class="products" id="products"></div>
@@ -33,6 +33,8 @@
     @viteReactRefresh
     @vite('resources/js/drugs.jsx')
     @vite('resources/js/carousel_entry.jsx')
+    @vite('resources/js/newsletter_entry.jsx')
+
     
     
 
