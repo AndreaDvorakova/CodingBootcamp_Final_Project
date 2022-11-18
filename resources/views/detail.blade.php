@@ -30,14 +30,15 @@
     <h2>Pharmacies</h2>
 
 
-    <div class="drop-list">
-        droplist
-
-    </div> 
-
-
+    
+    {{-- <select name="" id="">
+        @foreach ($pharmacy as $city)
+            <option value="{{$pharmacy->id}}">{{$pharmacy->city}}</option>
+        @endforeach
+    </select> --}}
+    
     <div class="pharmacy" id="pharmacy__baskets">
-
+        
         {{-- @foreach ($detail_drug->pharmacies as $basket)
             <div class="pharmacy__basket">
                 <span class="pharmacy__basket__name"><a href='/pharmacy-page/{{$basket->id}}'><h4>{{$basket->name}}</h4></a>

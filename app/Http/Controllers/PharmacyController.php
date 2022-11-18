@@ -22,4 +22,11 @@ class PharmacyController extends Controller
         return view('pharmacy-page', compact('drug_list'));
     }
 
+    // public function dropdown($id)
+    // {
+    //     $pharmacy = Pharmacy::findOrFail($id);
+
+    //     return view('detail', compact($pharmacy));
+    // }
+
 }

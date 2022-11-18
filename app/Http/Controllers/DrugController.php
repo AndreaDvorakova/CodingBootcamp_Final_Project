@@ -30,11 +30,6 @@ class DrugController extends Controller
         return view('confirmation', compact('order'));
     }
 
-    // public function city($city)
-    // {
-    //     $cities = Pharmacy::findOrFail("city");
-        
-    //     return view('detail', compact('cities'));
-    // }
+
 
 }
