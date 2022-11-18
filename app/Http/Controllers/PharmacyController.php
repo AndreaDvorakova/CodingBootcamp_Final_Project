@@ -21,4 +21,5 @@ class PharmacyController extends Controller
 
         return view('pharmacy-page', compact('drug_list'));
     }
+
 }

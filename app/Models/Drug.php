@@ -14,4 +14,9 @@ class Drug extends Model
     {
         return $this->belongsToMany(Pharmacy::class, 'pharmacy_items', 'pharmacy_id', 'drug_id')->withPivot('drug_price', 'drug_quantity')->orderBy('drug_price', 'asc')->limit(5);
     }
+
+    // public function cities()
+    // {
+    //     return $this->belongsToMany(Pharnacy::class);
+    // }
 }

@@ -21,7 +21,7 @@
         <!-- <img src="images/login-form-background.jpg" alt=""> -->
         <div class="container">
           <div class="signup-content">
-            <form method="POST" id="signup-form" class="signup-form">
+            <form method="POST" id="login-form" class="login-form" action="{{ route('login') }}">
                 @csrf
               <h2 class="form-title">Create account</h2>
               <div class="form-group">
@@ -32,6 +32,7 @@
                   name="email"
                   id="email"
                   placeholder="Your Email"
+                  value="{{ old('email') }}"
                 />
               </div>
               <div class="form-group">
@@ -47,7 +48,6 @@
                   class="zmdi zmdi-eye field-icon toggle-password"
                 ></span>
               </div>
-              <div class="form-group">
             <!-- Once clicked "Login", want to stay on the same page -->
                 <input
                   onClick="location.href='{{url('home')}}'"
