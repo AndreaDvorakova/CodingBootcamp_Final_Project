@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'Vite' => \Illuminate\Support\Facades\Vite::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

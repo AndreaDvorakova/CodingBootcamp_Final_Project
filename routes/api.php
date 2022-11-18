@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/drugs', [DrugController::class, 'index']);
 Route::get('/drugs', [DrugController::class, 'searchBar']);
-Route::get('/sendTestEmail', [DrugController::class, 'sendTestEmail']);
+Route::post('/sendTestEmail', [DrugController::class, 'sendTestEmail']);
 
 Route::get('/pharmacies', [PharmacyController::class, 'index']);
 

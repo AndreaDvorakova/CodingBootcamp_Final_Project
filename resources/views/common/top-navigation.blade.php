@@ -8,11 +8,27 @@
         </div>
         @viteReactRefresh
         @vite('resources/js/search.jsx')
+        
     
     <div class="navigation__buttons">
     <div class="navigation__buttons_web">
     
-        <button onClick="location.href='{{url('login')}}'">Login</button>
+        {{-- <button onClick="location.href='{{url('login')}}'">Login</button> --}}
+           
+        @if (Auth::user()) 
+            <button><a onClick="location.href='{{url('logout')}}'">Logout</a></button>
+        @else  
+            <button><a class="nav-link" 
+            style="cursor: pointer" 
+            data-toggle="modal" 
+            data-target="#loginModal">{{ __('Login') }}</a>
+            </button>
+            
+        @endif
+        
+
+        
+    
         <button>Your Cart</button>
     </div>
 

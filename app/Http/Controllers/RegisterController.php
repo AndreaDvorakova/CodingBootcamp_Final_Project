@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -10,4 +11,7 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
+
+
+
 }

@@ -96,6 +96,34 @@ body {
     }
 }
 
+// modal styling
+
+.form-group {
+    &.row {
+        margin-top: 2%;
+    }
+    button {
+        border: 1px solid $pink;
+        border-radius: 55px;
+        width: 50%;
+        background-color: white;
+        font-weight: bold;
+        color: $pink;
+        &:hover {
+            background-color: $pink;
+            border: 1px solid $pink;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
+
+.col-md-6 {
+    input {
+        border-radius: 55px;
+    }
+}
+
 // hero image part style
 
 .hero {

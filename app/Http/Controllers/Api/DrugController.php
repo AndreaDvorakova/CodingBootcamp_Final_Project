@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterEmail;
 use App\Mail\TestEmail;
-
+use Symfony\Component\Console\Input\Input;
 
 class DrugController extends Controller
 {
@@ -46,14 +46,15 @@ class DrugController extends Controller
         Notification::send($user, new ReservationSuccessful());
     }
 
-public function sendTestEmail() {
+public function sendTestEmail(Request $request) {
 
-        // $data = 'This is data';
-
-        Mail::to('test@test.com')
+        $data = Drug::limit(1)->get();
+        
+        
+        Mail::to($request->email)
             // ->cc('copy@example.com')
             // ->bcc('hidden_copy@example.com')
-            ->send(new TestEmail());
+            ->send(new TestEmail($data));
 
     }
 }
