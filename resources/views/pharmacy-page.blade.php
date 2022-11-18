@@ -53,23 +53,73 @@
         <div class="items" id="items">
             {{-- <h1>Another drugs at this pharmacy</h1> --}}
             {{-- <p>{{$id->drug_id}}</p> --}}
+
+            
                 
             @foreach ($pharmacy->drugs as $drug)
         
-        <div class="popup">Click me!
-            <span class="popuptext" id="myPopup">{{$drug->description}}.</span>
-          </div>
+
                 <div class="item">
                     <img class="item__img" src="/images/drugs/{{ $drug->image }}" alt="">
                     <h5>{{ $drug->name }}</h5>
                     <p>{{ $drug->pivot->drug_quantity }} quantity </p>
-                    <span class="item__description">{{ $drug->description }}</span>
+                    <div id="myModal" class="modal">
+                        <div class="modal-conten">
+                            <span class="close">&times;</span>
+                            <p> {{ $drug->description }}</p>
+                        </div>
+                    </div>
+                    <button id="myBtn">Description</button>
+                    
                  
                     
                 </div>
             @endforeach
-            
+
             <script>
+                // Get the modal
+                var modal = document.getElementById("myModal");
+                
+                // Get the button that opens the modal
+                var btns = document.querySelectorAll("#myBtn");
+                
+                // Get the <span> element that closes the modal
+                var spans = document.querySelectorAll(".close");
+                // console.log(spans);
+                
+                // When the user clicks the button, open the modal 
+                btns.forEach( btn => {
+                    
+                    btn.onclick = function(e) {
+                        console.log(e);
+                        e.target.parentNode.childNodes[7].style.display = "block";
+                    //   modal.innerText=e.target.parentElement.childNodes[2]
+                      
+                    }
+                });
+                
+                
+                // When the user clicks on <span> (x), close the modal
+                spans.forEach(span => {
+                    
+                    span.onclick = function(e) {
+                        console.log(e);
+
+                      e.target.parentNode.parentNode.style.display = "none";
+                    }
+                })
+                
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
+                }
+                </script>
+
+            
+            
+            {{-- <script>
                 // When the user clicks on <div>, open the popup
                 
                   var popups = document.querySelectorAll(".popup");
@@ -80,7 +130,7 @@
                       })
                   });
                 
-                </script>
+                </script> --}}
 
                 {{-- <script>
                     // When the user clicks on <div>, open the popup
