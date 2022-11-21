@@ -46,10 +46,22 @@ body {
     }
 }
 
+.description {
+    background-color: antiquewhite;
+}
+
 .items {
-    display: flex;
+    // display: flex;
     overflow: scroll;
     height: 450px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    // flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
 }
 
 .items-wrapper {
@@ -78,79 +90,36 @@ body {
     box-shadow: 1px 1px 20px lighten($pink, 30%);
     position: relative;
 
+
     &__img {
         width: 250px;
-        margin-top: 30px;
-        margin-right: 30px;
+        // margin-top: 30px;
+        // margin-right: 30px;
         object-fit: cover;
     }
-
+    
     &__button {
-        top: 10px;
+        border: 1px solid $pink;
+        border-radius: 55px;
+        padding: 2%;
+        background-color: white;
+        color: $pink;
+    }
+    
+    &__description {
+        // display: none;
+        background-color: wheat;
     }
 
-    &__description {
-        display: none;
+    &__name {
+    top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    position: absolute;
     }
 }
 
-// .items {
-//     width: 80%;
-//     margin-left: auto;
-//     margin-right: auto;
-//     display: flex;
-//     flex-flow: row wrap;
-//     justify-content: space-between;
-//     align-items: center;
-//     margin-bottom: 150px;
-
-//     &__item {
-//         width: 350px;
-//         height: 370px;
-//         margin: 1%;
-//         padding: 1%;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         align-items: center;
-//         box-shadow: 1px 1px 20px lighten($pink, 30%);
-//         position: relative;
-//         img {
-//             width: 60%;
-//             margin-top: 20px;
-//         }
-//         h4 {
-//             width: 80%;
-//             text-align: center;
-//             position: absolute;
-//             top: 20px;
-//         }
-//         a {
-//             position: absolute;
-//             bottom: 20px;
-//             margin-top: 20px;
-//             width: 100%;
-//             text-align: center;
-//             :hover {
-//                 background-color: $pink;
-//                 color: white;
-//             }
-
-//             button {
-//                 border: 1px solid $pink;
-//                 border-radius: 55px;
-//                 padding: 2%;
-//                 background-color: white;
-//                 color: $pink;
-//             }
-//         }
-
-//         // :hover {
-//         //     background-color: $pink;
-//         //     color: white;
-//         // }
-//     }
-// }
 
 
 .item-arrow {
@@ -192,13 +161,13 @@ body {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
+    // padding-top: 100px; /* Location of the box */
+    left: 250px;
+    top: 250px;
     width: 50%; /* Full width */
-    height: 40%; /* Full height */
+    // height: 40%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: orange; /* Fallback color */
+    // background-color: orange; /* Fallback color */
     // background-color: rgba(255, 255, 255, 0.4); /* Black w/ opacity */
     // background-color: white;
 
