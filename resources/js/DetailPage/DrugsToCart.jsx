@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
+// npm install --save sweetalert2 sweetalert2-react-content
+import Swal from "sweetalert2";
 // import Cart from "./Cart";
 // import DetailPage from "./DetailPage";
 
@@ -46,7 +49,11 @@ export default function DrugsToCart(props) {
 
     axios.post('/add-to-cart', data).then(res => {
       if(res.data.status === 201){
-        swal("Success",res.data.message,"success");
+        Swal.fire({
+          icon: 'success',
+          title: 'Added to Cart',
+          footer: '<a href="/cart">Go to Cart</a>',
+        });
       }else if(res.data.status === 409){
         swal("Warning",res.data.message,"warning");
       }else if(res.data.status === 401){

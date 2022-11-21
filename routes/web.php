@@ -6,12 +6,11 @@ use App\Http\Controllers\DrugController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PharmacyController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Api\BasketItemController;
 // use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\BasketController as ControllersBasketController;
+use App\Http\Controllers\Api\BasketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +50,4 @@ Route::get('/cart', ["App\Http\Controllers\BasketController", 'index'])->name('c
 // Route::get('/register', [RegisterController::class, 'index'])->name('register');
 // Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/reservation', [BasketController::class, 'addToCart']);

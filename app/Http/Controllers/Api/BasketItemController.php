@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Drug;
 use App\Models\BasketItem;
+use Auth;
 
 class BasketItemController extends Controller
 {

@@ -29,7 +29,8 @@
 
         
     
-        <button>Your Cart</button>
+            </button>
+        <button><a onClick="location.href='{{url('cart')}}'">Your Cart</a></button>
 
     </div>
 
