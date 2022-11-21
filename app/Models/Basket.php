@@ -11,13 +11,11 @@ class Basket extends Model
 {
     use HasFactory;
 
-    // public function drugs()
-    // {
-    //     return $this->hasMany(Drug::class, 'id', 'drug_id');
-    // }
-
-    // public function pharmacy()
-    // {
-    //     return $this->belongsTo(Pharmacy::class);
-    // }
+    protected $table = 'baskets';
+    protected $fillable = [
+        'user_id',
+        'total_price',
+        'sms_code',
+        'order_status',
+    ];
 }

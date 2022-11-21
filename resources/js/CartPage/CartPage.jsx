@@ -1,16 +1,16 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import swal from "sweetalert";
 
 export default function CartPage() {
-    const [carts, setCarts] = useState([]);
-    // const [amountInCart, setAmountInCart] = useState(1);
-    // const [price, setPrice] = useState(drugPrice);
-    // const [inStock, setInStock] = useState(drugQuantity);
+    const [carts, setCarts] = useState([])
+    // const [show, setShow] = useState(true);
     
 
     const loadCarts = async() => {
         const response = await fetch('http://www.ipillgood.test/api/cart');
         const data = await response.json();
-        console.log(data);
+       
         const cartArray = []
         for (const [pharmacyId, orderFromPharmacy] of Object.entries(data)) {
             cartArray.push({
@@ -19,32 +19,15 @@ export default function CartPage() {
             })
         }
         console.log(cartArray);
+        // for (let i = 0; i < cartArray.length; i++) {
+        //     for (let j = 0; j < cartArray[i].items.length; j++) {
+        //         console.log(cartArray[i].items[j].quantity);
+        //     }
+        // }
+        // const [quantity, setQuantity] = useState()
         setCarts(cartArray);
     }
 
-    // const addToCart = () => {
-    //     setAmountInCart(Math.min(drugQuantity, amountInCart + 1));
-  
-    //     addItemToCart(drug.id);
-  
-    //     // want to set the max price equal to the amount in stock
-    //     if (drugQuantity !== amountInCart){
-    //       setPrice(price + drugPrice);
-  
-    //     } 
-    //     // set the stock amoount to zero if stock runs out
-    //     setInStock(Math.max(0, inStock - 1));
-    // }
-
-    // const removeFromCart = () => {
-    //     setAmountInCart(Math.max(0, amountInCart - 1));
-  
-    //     removeItemFromCart(drug.id)
-  
-    //     setPrice(Math.max(drugPrice, price - drugPrice))
-  
-    //     setInStock(Math.min(drugQuantity, inStock + 1));
-    // }
 
     const getTotalPrice = () => {
         let totalPrice = 0
@@ -54,6 +37,7 @@ export default function CartPage() {
         return totalPrice
     }
 
+
     const getBasketPrice = (basket) => {
         let basketPrice = 0
         basket.items.forEach((drug) => {
@@ -62,9 +46,55 @@ export default function CartPage() {
         return basketPrice
     }
 
-    const reserveInPharmacy = async (pharmacyId) => {
-        console.log("MAKING RESERVATION IN PHARMACY ID"+pharmacyId)
+    const addBasketQuantity = (e) => {
+
+        e.preventDefault();
+
+        const newCarts = [...carts]
+        // targeting value of the quantity and increasing by 1
+        newCarts[e.target.attributes["databasket"].value].items[e.target.attributes["dataitem"].value].quantity += 1;
+ 
+       setCarts(newCarts);
+    //    console.log(carts);
     }
+
+    const removeBasketQuantity = (e) => {
+
+        e.preventDefault();
+
+        const newCarts = [...carts]
+        // targeting value of the quantity and decreasing by one.
+        newCarts[e.target.attributes["databasket"].value].items[e.target.attributes["dataitem"].value].quantity -= 1;
+        
+       setCarts(newCarts);
+    }
+
+    const reserveInPharmacy = (e, basket) => {
+        e.preventDefault();
+
+        const data = {
+            total_price: getBasketPrice(basket),
+            sms_code: Math.floor(100000 + Math.random() * 900000),
+            order_status: 1,
+        }
+
+        axios.post(`/reservation`, data).then(res => {
+            if(res.data.status === 201){
+              swal("Reserved",res.data.message,"success");
+            }else if(res.data.status === 409){
+              swal("Warning",res.data.message,"warning");
+            }else if(res.data.status === 401){
+              swal("Error",res.data.message,"error");
+            }else if(res.data.status === 404){
+              swal("Warning",res.data.message,"warning");
+            }
+          });
+
+            setCarts(carts.filter(cart => cart.id !== basket.id))
+    }
+    // const reserveInPharmacy = async (pharmacyId) => {
+    //     console.log("MAKING RESERVATION IN PHARMACY ID"+pharmacyId)
+    // }
 
     useEffect(()=>{
         loadCarts()
@@ -73,14 +103,15 @@ export default function CartPage() {
 
     return (
         <div>
-            
-            {carts.map((cart) => {
+            {/* {console.log(carts)} */}
+            {carts.map((cart, j) => {
+
                 return (
                     <div key={cart.id} className="cart">
                        {/* { console.log(cart)} */}
                         <h3>Order: {cart.items[0].pharmacy.name} - {cart.items[0].pharmacy.city}</h3><hr />
                         {cart.items.map((item, i) => {
-                            console.log(cart.items);
+                            // console.log(cart.items);
                             return (
                                 <div key={i} className="cart__order">
                                     <div className="cart__order__detail"><img
@@ -90,21 +121,25 @@ export default function CartPage() {
                                             /> 
                                            <div className="cart__order__detail_info">
                                                 <span>{item.drug.name}</span> 
-                                                <span>Price: {item.drug_price}kc</span>
+                                                
                                            </div>
+                                           <span>{item.quantity}</span>
+                                           <span>Price: {item.drug_price * item.quantity}kc</span>
                                            <div className="pharmacy__basket__order-to-cart">
-                                                <button className="cart__order__detail_remove">-</button>
-                                                <button className="cart__order__detail_add">+</button> 
+                                                <button className="cart__order__detail_remove" dataitem={i} databasket={j} onClick={removeBasketQuantity}>-</button>
+                                                <button className="cart__order__detail_add" dataitem={i} databasket={j} onClick={addBasketQuantity}>+</button> 
+                                                
                                             </div>
+                                            
 
                                     </div>
-                                </div>    
+                                </div> 
                             )
                         })}
                         Total: {getBasketPrice(cart)}
                         <div className="cart__order__buttons">
                             <button className="cart__order__buttons_cancel">CANCEL</button>
-                            <button className="cart__order__buttons_reserve" onClick={() => reserveInPharmacy(cart.id)}>RESERVE</button>
+                            <button className="cart__order__buttons_reserve" onClick={(e) => {reserveInPharmacy(e, cart)}}>RESERVE</button>
                         </div>
                         <hr />
                     </div>

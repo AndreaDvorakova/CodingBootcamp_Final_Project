@@ -18,7 +18,7 @@
                 </button>
                 
             @endif
-            <button><a class="nav-link" href="/cart">Your Cart</a></button>
+            <button><a class="nav-link" onClick="location.href='{{url('cart')}}'">Your Cart</a></button>
         </div>
 
         <div class="navigation__buttons_mobile">
@@ -30,11 +30,13 @@
                 data-bs-toggle="modal" 
                 data-bs-target="#loginModal"><img src="/login_icon.png" alt="Login button"></a>
             
+
             @endif
             
             {{-- <a onClick="location.href='{{url('login')}}'"><img src="/login_icon.png" alt="Login button"></a> --}}
             <a href="/cart" ><img src="/cart_icon.png" alt="Cart button"></a>
         </div>
+
     </div>
 
 </nav>
