@@ -23,6 +23,10 @@ body {
     justify-content: center;
     width: 100%;
     height: 60%;
+    @media (max-width: 660px) {
+        flex-direction: column;
+        height: 90%;
+    }
 
     &__left {
         width: 50%;
@@ -30,9 +34,19 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @media (max-width: 660px) {
+            width: 100%;
+            height: 80%;
+        }
         img {
-            width: 55%;
-            height: 70%;
+            width: 50%;
+            // height: 70%;
+            @media (max-width: 660px) {
+                width: 40%;
+            }
+            @media (max-width: 360px) {
+                width: 40%;
+            }
         }
         span {
             font-size: x-small;
@@ -45,6 +59,10 @@ body {
         width: 50%;
         justify-content: center;
         align-items: center;
+        @media (max-width: 660px) {
+            width: 100%;
+            height: 80%;
+        }
     }
     &__title {
         color: white;
@@ -55,17 +73,38 @@ body {
         font-size: 1.9em;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
             1px 1px 0 #000;
+        @media (max-width: 1050px) {
+            line-height: 1.2em;
+            font-size: 1.2em;
+        }
+        @media (max-width: 360px) {
+            font-size: 0.8em;
+            width: 90%;
+        }
     }
     &__paragraph {
         padding: 4%;
         width: 85%;
         font-size: larger;
         line-height: 1.6em;
+        @media (max-width: 1024px) {
+            font-size: 1em;
+        }
+        @media (max-width: 360px) {
+            font-size: 0.8em;
+            padding: 2%;
+        }
     }
 }
 
 h2 {
     margin-left: 50px;
+    @media (max-width: 1024px) {
+        margin-left: 0;
+    }
+    @media (max-width: 360px) {
+        text-align: center;
+    }
 }
 
 .pharmacy {
@@ -81,6 +120,9 @@ h2 {
     a {
         color: inherit;
         text-decoration: none;
+        &:hover {
+            color: $pink;
+        }
     }
 
     &__basket {
@@ -91,6 +133,11 @@ h2 {
         flex-direction: row;
         justify-content: space-around;
         box-shadow: 1px 1px 20px lighten($pink, 30%);
+        @media (max-width: 360px) {
+            font-size: 0.8em;
+            line-height: 0.8em;
+            padding: 2%;
+        }
 
         &__name {
             display: flex;
@@ -106,6 +153,9 @@ h2 {
             width: 25%;
             justify-content: space-around;
             align-items: flex-start;
+            @media (max-width: 360px) {
+                display: none;
+            }
         }
 
         &__order {
@@ -129,6 +179,10 @@ h2 {
                 width: 6.5em;
                 padding: 2%;
                 font-weight: bold;
+                &:hover {
+                    background-color: $pink;
+                    color: white;
+                }
             }
         }
 
@@ -141,6 +195,12 @@ h2 {
             height: 2em;
             padding: 1.6%;
             font-weight: bolder;
+            &:hover {
+                background-color: $pink;
+                border: 1px solid $pink;
+                color: white;
+                font-weight: bold;
+            }
         }
     }
 }

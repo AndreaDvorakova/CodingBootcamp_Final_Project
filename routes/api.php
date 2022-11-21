@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PharmacyItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BasketItemController;
+// use App\Http\Controllers\Api\BasketController;
 
 
 /*
@@ -34,3 +35,4 @@ Route::get('/pharmacy-items/{id}', [PharmacyItemController::class, 'index']);
 
 // Route::post('/add-to-cart', [BasketController::class, 'addToCart']);
 Route::get('/cart', [BasketItemController::class, 'show']);
+// Route::post('/reservation', [BasketController::class, 'addToCart']);

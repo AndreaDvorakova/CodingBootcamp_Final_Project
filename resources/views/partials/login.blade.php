@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModal">{{ __('Login') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -67,7 +67,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('bottom_scripts')
 @parent
 
 @if($errors->has('email') || $errors->has('password'))
