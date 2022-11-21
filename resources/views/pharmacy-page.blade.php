@@ -3,6 +3,16 @@
 @section('content')
     @vite('resources/css/pharmacy-page.scss')
 
+    {{-- <script>
+        // When the user clicks on <div>, open the popup
+        function myFunction() {
+          var popup = document.getElementById("myPopup");
+          popup.classList.toggle("show");
+        }
+        </script>
+<div class="popup" onclick="myFunction()">Click me!
+    <span class="popuptext" id="myPopup">Popup text...</span>
+  </div> --}}
 
 
     <div class="container">
@@ -40,68 +50,98 @@
         </div>
 
         <div class="items" id="items">
+            {{-- <h1>Another drugs at this pharmacy</h1> --}}
+            {{-- <p>{{$id->drug_id}}</p> --}}
 
+            
+                
             @foreach ($pharmacy->drugs as $drug)
+        
+
             <div class="item">
+                <h5 class="item__name">{{ $drug->name }}</h5>
                 <img class="item__img" src="/images/drugs/{{ $drug->image }}" alt="">
-                <h5>{{ $drug->name }}</h5>
                 <p>{{ $drug->pivot->drug_quantity }} quantity </p>
                 <div id="myModal" class="modal">
                     <div class="modal-conten">
                         <span class="close">&times;</span>
-                        <p> {{ $drug->description }}</p>
+                        <p class="item__description"> {{ $drug->description }}</p>
                     </div>
                 </div>
-                <button id="myBtn">Description</button>
-                
-             
-                
-            </div>
+                <button class="item__button" id="myBtn">Description</button>
+                    
+                 
+                    
+                </div>
             @endforeach
-
-
 
             <script>
                 // Get the modal
                 var modal = document.getElementById("myModal");
-
+                
                 // Get the button that opens the modal
                 var btns = document.querySelectorAll("#myBtn");
-
+                
                 // Get the <span> element that closes the modal
                 var spans = document.querySelectorAll(".close");
                 // console.log(spans);
-
+                
                 // When the user clicks the button, open the modal 
-                btns.forEach(btn => {
-
+                btns.forEach( btn => {
+                    
                     btn.onclick = function(e) {
                         console.log(e);
                         e.target.parentNode.childNodes[7].style.display = "block";
-                        //   modal.innerText=e.target.parentElement.childNodes[2]
-
+                    //   modal.innerText=e.target.parentElement.childNodes[2]
+                      
                     }
                 });
-
-
+                
+                
                 // When the user clicks on <span> (x), close the modal
                 spans.forEach(span => {
-
+                    
                     span.onclick = function(e) {
                         console.log(e);
-
-                        e.target.parentNode.parentNode.style.display = "none";
+                      e.target.parentNode.parentNode.style.display = "none";
                     }
                 })
-
+                
                 // When the user clicks anywhere outside of the modal, close it
                 window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
                 }
-            </script>
+                </script>
 
+            
+            
+            {{-- <script>
+                // When the user clicks on <div>, open the popup
+                
+                  var popups = document.querySelectorAll(".popup");
+                  popups.forEach(popup => {
+                      popup.addEventListener('click', (e)=>{
+                          console.log(e.target.childNodes[1].classList);
+                          e.target.childNodes[1].classList.toggle("show");
+                      })
+                  });
+                
+                </script> --}}
+
+                {{-- <script>
+                    // When the user clicks on <div>, open the popup
+                    
+                      var popups = document.querySelectorAll(".item__img");
+                      popups.forEach(popup => {
+                          popup.addEventListener('click', (e)=>{
+                              console.log(e.target.childNodes[1].classList);
+                              e.target.childNodes[1].classList.toggle("show");
+                          })
+                      });
+                    
+                    </script> --}}
 
             <button class="item-arrow" id="item-arrow-prev">
                 &#8249;
@@ -110,26 +150,31 @@
                 &#8250;
             </button>
 
-
-
-            <script>
-                const slidesContainer = document.getElementById("items");
-                const slide = document.querySelector(".item");
-                const prevButton = document.getElementById("item-arrow-prev");
-                const nextButton = document.getElementById("item-arrow-next");
-                nextButton.addEventListener("click", () => {
-                    const slideWidth = slide.clientWidth;
-                    slidesContainer.scrollLeft += slideWidth;
+            {{-- <script>
+                $('item__img').click(function() {
+                    $('item__description', this).toggle();
                 });
-                prevButton.addEventListener("click", () => {
-                    const slideWidth = slide.clientWidth;
-                    slidesContainer.scrollLeft -= slideWidth;
-                });
-            </script>
+            </script> --}}
 
+     
+                <script>
+                    const slidesContainer = document.getElementById("items");
+                    const slide = document.querySelector(".item");
+                    const prevButton = document.getElementById("item-arrow-prev");
+                    const nextButton = document.getElementById("item-arrow-next");
+                    nextButton.addEventListener("click", () => {
+                        const slideWidth = slide.clientWidth;
+                        slidesContainer.scrollLeft += slideWidth;
+                    });
+                    prevButton.addEventListener("click", () => {
+                        const slideWidth = slide.clientWidth;
+                        slidesContainer.scrollLeft -= slideWidth;
+                    });
+                </script>
 
-        </div>
-        <div id="map">map will be here
+    
+</div>
+            <div id="map">map will be here
             <script>
                 // Initialize and add the map
                 function initMap() {
@@ -155,12 +200,12 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgvnUC2STMgsjJvDIlieRPYq43Fh9acJ4&callback=initMap">
                 defer
             </script>
-            @php
-                $pharmacy->drugs;
-                // dd($pharmacy->pivot->drug_quantity);
-            @endphp
-        </div>
+        @php
+            $pharmacy->drugs;
+            // dd($pharmacy->pivot->drug_quantity);
+        @endphp
+    </div>
 
-        @viteReactRefresh
-        @vite('resources/js/drugs.jsx')
-    @endsection
+    @viteReactRefresh
+    @vite('resources/js/drugs.jsx')
+@endsection
