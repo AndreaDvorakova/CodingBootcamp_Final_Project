@@ -22,51 +22,103 @@ body {
 // navigation style
 
 .navigation {
+    align-items: center;
+    background-color: $blue;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    background-color: $blue;
     padding: 0.5em;
+    @media (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
     &__logo {
         width: 10%;
+        @media (max-width: 1024px) {
+            width: 50%;
+        }
+        @media (max-width: 360px) {
+            width: 40%;
+        }
         img {
-            width: 30%;
             border-radius: 50%;
+            width: 30%;
+            @media (max-width: 1024px) {
+                width: 14%;
+            }
+            @media (max-width: 360px) {
+                width: 24%;
+            }
         }
     }
 
     &__search-bar {
         width: 60%;
 
+        @media (max-width: 1024px) {
+            width: 100%;
+            order: 1;
+        }
+        @media (max-width: 360px) {
+            width: 95%;
+            order: 1;
+        }
+
+        ul {
+            width: 60%;
+            @media (max-width: 1024px) {
+                max-width: 95%;
+            }
+        }
+
         input {
             border: none;
             border-radius: 55px;
-            width: 60%;
             padding: 1%;
             position: relative;
+            width: 70%;
+            @media (max-width: 1024px) {
+                width: 100%;
+            }
         }
+
         &_button {
-            width: 60%;
+            width: 100%;
             border: none;
             background-color: white;
             text-align: left;
             padding: 3%;
+            @media (max-width: 1024px) {
+                max-width: 100%;
+            }
         }
         &_image {
-            width: 50px;
-            height: 50px;
+            width: 90px;
+            height: 90px;
             margin-right: 1%;
+            @media (max-width: 1024px) {
+                width: 80px;
+                height: 80px;
+            }
+            @media (max-width: 360px) {
+                width: 30px;
+                height: 30px;
+            }
         }
     }
     &__buttons {
         display: flex;
         flex-direction: row;
-        width: 15%;
-        justify-content: space-around;
+        width: 30%;
+        justify-content: flex-end;
+        @media (max-width: 1024px) {
+            width: 50%;
+        }
         &_web {
             display: flex;
             flex-direction: row;
+            @media (max-width: 1024px) {
+                display: none;
+            }
             button {
                 border: 1.2px solid $pink;
                 border-radius: 55px;
@@ -76,20 +128,50 @@ body {
                 padding: 2%;
                 font-weight: bold;
                 margin-right: 20px;
+                &:hover {
+                    background-color: $pink;
+                    color: white;
+                }
             }
         }
         &_mobile {
             display: none;
+            @media (max-width: 1024px) {
+                display: flex;
+                img {
+                    width: 35px;
+                    margin-right: 5px;
+                }
+            }
+            @media (max-width: 360px) {
+                img {
+                    width: 25px;
+                    margin-right: 5px;
+                }
+            }
         }
     }
+}
+
+.list-group#results {
+    display: none;
 }
 
 #results {
     position: absolute;
     width: inherit;
     border-radius: 5px;
-    height: 400px;
+    max-height: 400px;
     overflow-y: scroll;
+    box-shadow: 1px 1px 20px lighten($orange, 10%);
+    @media (max-width: 1024px) {
+        max-height: 440px;
+        font-size: 1em;
+    }
+    @media (max-width: 360px) {
+        max-height: 220px;
+        font-size: 1em;
+    }
     &::-webkit-scrollbar {
         background: transparent; /* Chrome/Safari/Webkit */
         width: 0px;
@@ -132,15 +214,28 @@ body {
     align-items: center;
     width: 100%;
     background-color: $orange;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
     &__left {
         width: 50%;
         display: flex;
         flex-direction: column;
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
         img {
             width: 100%;
+            @media (max-width: 1024px) {
+                width: 60%;
+                margin: auto;
+            }
         }
         span {
             font-size: x-small;
+            @media (max-width: 1024px) {
+                font-size: 0.4em;
+            }
         }
     }
     &__right {
@@ -149,6 +244,9 @@ body {
         width: 50%;
         justify-content: space-around;
         align-items: center;
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
     }
     &__title {
         color: white;
@@ -159,12 +257,23 @@ body {
         font-size: 1.9em;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
             1px 1px 0 #000;
+        @media (max-width: 1024px) {
+            margin-top: 1%;
+            line-height: 1.2em;
+            letter-spacing: 0.1em;
+            font-size: 1em;
+        }
     }
     &__paragraph {
         padding: 4%;
         width: 85%;
         font-size: larger;
         line-height: 1.6em;
+        @media (max-width: 1024px) {
+            padding: 1%;
+            font-size: small;
+            line-height: 1em;
+        }
     }
     &__button {
         border: 1.2px solid $blue;
@@ -174,6 +283,17 @@ body {
         width: 12.5em;
         padding: 1.6%;
         font-weight: bolder;
+        @media (max-width: 1024px) {
+            width: 6.5em;
+            padding: 1%;
+            font-weight: bold;
+            margin-bottom: 2%;
+        }
+        &:hover {
+            color: white;
+            background-color: $pink;
+            border: 1px solid $pink;
+        }
     }
 }
 
@@ -189,17 +309,32 @@ body {
     justify-content: space-around;
     align-items: flex-end;
     padding: 4%;
+    @media (max-width: 1024px) {
+        padding: 1%;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
     &__left {
         width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        @media (max-width: 1024px) {
+            justify-content: flex-start;
+        }
+        @media (max-width: 360px) {
+            width: 100%;
+        }
         &_title {
             color: white;
             letter-spacing: 0.4em;
             font-size: 1.5em;
             text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
                 1px 1px 0 #000;
+            @media (max-width: 1024px) {
+                font-size: 1em;
+            }
         }
     }
     &__right {
@@ -208,6 +343,9 @@ body {
         flex-direction: row;
         justify-content: space-around;
         position: relative;
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
         &_input {
             width: 55%;
             border: 2px solid $blue;
@@ -216,6 +354,10 @@ body {
             top: 0;
             right: 40px;
             padding: 1%;
+            @media (max-width: 1024px) {
+                align-items: flex-end;
+                margin-top: -5%;
+            }
         }
         &_button {
             width: 15%;
@@ -227,7 +369,21 @@ body {
             top: 0;
             right: 270px;
             margin-right: -275px;
-            padding: 1%;
+            padding: 1.3%;
+            @media (max-width: 1024px) {
+                right: 300px;
+                margin-top: -5%;
+            }
+            @media (max-width: 360px) {
+                width: 25%;
+                right: 280px;
+                padding: 1.6%;
+            }
+            &:hover {
+                color: white;
+                background-color: $pink;
+                border: none;
+            }
         }
     }
 }
@@ -255,6 +411,12 @@ body {
         align-items: center;
         box-shadow: 1px 1px 20px lighten($pink, 30%);
         position: relative;
+        @media (max-width: 1024px) {
+            width: 45%;
+        }
+        @media (max-width: 670px) {
+            width: 97%;
+        }
         img {
             width: 60%;
             margin-top: 20px;
@@ -293,17 +455,17 @@ body {
 }
 
 .page {
-    position: absolute;
-    bottom: 200px;
+    position: relative;
+    bottom: 0;
     width: 100%;
     left: 0;
     &__inner {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
         margin-top: 1.5%;
-        margin-bottom: 4%;
+        margin-bottom: 2%;
         p {
             margin-top: auto;
             font-weight: bold;
@@ -315,17 +477,21 @@ body {
 // footer styling
 
 .footer {
+    position: absolute;
+    width: 100%;
     display: flex;
     flex-direction: row;
     background-color: $blue;
-    height: 30vh;
+    height: 300px;
     margin: 0;
+    @media (max-width: 1024px) {
+        height: 200px;
+    }
 
     &__left {
         display: flex;
         flex-direction: column;
         width: 50%;
-
         margin-left: 4%;
 
         &_logo {
@@ -339,6 +505,16 @@ body {
         justify-content: space-between;
         width: 50%;
         margin-right: 4%;
+        &_main {
+            @media (max-width: 1024px) {
+                display: none;
+            }
+        }
+        &_company {
+            @media (max-width: 1024px) {
+                display: none;
+            }
+        }
         &_social {
             display: flex;
             flex-direction: column;
@@ -378,115 +554,6 @@ body {
     margin-bottom: 2%;
 }
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-// larger screens than notebook 2560 x 1440
-
-// @media (min-width: 2000px) {
-//     .navigation {
-//         font-size: 2em;
-//         padding: 1.5em;
-//         &__logo {
-//             width: 12%;
-//             img {
-//                 width: 40%;
-//             }
-//         }
-//         &__search-bar {
-//             input {
-//                 width: 75%;
-//             }
-//         }
-//         &__buttons {
-//             width: 20%;
-//             margin-right: 1%;
-//             button {
-//                 width: 9.5em;
-//                 margin-right: 20px;
-//                 padding: 2%;
-//             }
-//         }
-//     }
-// }
-
 // mobile 360 x 800
 
-// @media (min-width: 300px) and (max-width: 480px) {
-//     .navigation {
-//         justify-content: center;
-//         flex-wrap: wrap;
-//         flex: 100%;
-
-//         #search-bar {
-//             order: 1;
-//         }
-//         &__logo {
-//             flex: 50%;
-//         }
-//         &__search-bar {
-//             // margin-top: 20px;
-//             // margin-bottom: 10px;
-//             flex: 100%;
-//             input {
-//             }
-//         }
-//         &__buttons {
-//             flex: 50%;
-//             &_web {
-//                 display: none;
-//             }
-//             &_mobile {
-//                 display: flex;
-//                 flex-direction: row;
-//                 width: 20%;
-//             }
-//         }
-//     }
-//     .hero {
-//         overflow: hidden;
-//         flex-direction: column;
-//         flex: auto;
-//     }
-//     .newsletter {
-//         flex: auto;
-//     }
-//     .products {
-//         flex: auto;
-//     }
-//     .page {
-//         flex: auto;
-//     }
-//     .footer {
-//         flex: auto;
-//     }
-// }
-
 // tablet 769 x 1024
-
-// @media (min-width: 481px) {
-//     .navigation {
-//         &__logo {
-//             width: 10%;
-//             img {
-//                 width: 60%;
-//             }
-//         }
-//         &__search-bar {
-//             width: 70%;
-//             input {
-//                 width: 85%;
-//             }
-//         }
-//         &__buttons {
-//             justify-content: space-between;
-//             width: 30%;
-//             &_web {
-//                 display: flex;
-//             }
-//             &_mobile {
-//                 display: none;
-//             }
-//         }
-//     }
-// }

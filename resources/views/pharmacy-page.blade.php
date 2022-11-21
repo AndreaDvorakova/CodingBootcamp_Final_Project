@@ -163,4 +163,5 @@
 
         @viteReactRefresh
         @vite('resources/js/drugs.jsx')
+    </div>
     @endsection

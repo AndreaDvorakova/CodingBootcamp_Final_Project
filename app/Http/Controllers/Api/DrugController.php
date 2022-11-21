@@ -48,7 +48,7 @@ class DrugController extends Controller
 
 public function sendTestEmail(Request $request) {
 
-        $data = Drug::limit(1)->get();
+        $data = Drug::limit(2)->get();
         
         
         Mail::to($request->email)
