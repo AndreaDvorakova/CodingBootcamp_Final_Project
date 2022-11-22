@@ -54,7 +54,7 @@ class ReservationSuccessful extends Notification
         return (new MailMessage)
                     ->line('Your order no. '.$this->order.' was successful. Please pick up until '.$this->expiration)
                     // ->line(new HtmlString(`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration=".$expiration/>`));
-                    ->action('QR Code', url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration='.$this->expiration));
+                    ->action('QR Code', url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration='.$this->expiration.'order='.$this->order));
                     // ->line('Thank you for using our application!');
     }
 

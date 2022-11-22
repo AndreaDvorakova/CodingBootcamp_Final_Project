@@ -114,6 +114,7 @@ export default function CartPage() {
         console.log(data.sms_code);
 
         axios.post(`/reservation`, data).then(async (res) => {
+            swal("Loading...");
             if (res.data.status === 201) {
                 // swal("Success", res.data.message, "success");
                 const confirmationData = await sendNotification(data.sms_code);
