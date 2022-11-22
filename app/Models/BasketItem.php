@@ -16,6 +16,7 @@ class BasketItem extends Model
         'pharmacy_id',
         'drug_price',
         'quantity',
+        'order_status',
     ];
 
     public function drug()

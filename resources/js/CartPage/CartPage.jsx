@@ -77,17 +77,27 @@ export default function CartPage() {
     const reserveInPharmacy = (e, basket) => {
         e.preventDefault();
 
+        // console.log(basket);
+        // const item_qties = basket.items.map((basket_item) => {
+        //     return {
+        //         id: basket_item.drug_id,
+        //         qty: basket_item.quantity
+        //     }
+        // })
+
         const data = {
             total_price: getBasketPrice(basket),
             sms_code: Math.floor(100000 + Math.random() * 900000),
             order_status: 1,
+            pharmacy_id: basket.items[0].pharmacy_id,
+            // item_qties: item_qties
         };
 
         console.log(data.sms_code);
 
         axios.post(`/reservation`, data).then((res) => {
             if (res.data.status === 201) {
-                swal("Reserved", res.data.message, "success");
+                swal("Success", res.data.message, "success");
             } else if (res.data.status === 409) {
                 swal("Warning", res.data.message, "warning");
             } else if (res.data.status === 401) {
@@ -108,10 +118,15 @@ export default function CartPage() {
     // const reserveInPharmacy = async (pharmacyId) => {
     //     console.log("MAKING RESERVATION IN PHARMACY ID"+pharmacyId)
     // }
+    const cancelReservation = (e, basket) => {
+        e.preventDefault();
+
+        setCarts(carts.filter((cart) => cart.id !== basket.id));
+    };
 
     useEffect(() => {
         loadCarts();
-    }, []);
+    }, [setCarts]);
 
     return (
         <div>
@@ -167,7 +182,12 @@ export default function CartPage() {
                         })}
                         Total: {getBasketPrice(cart)}
                         <div className="cart__order__buttons">
-                            <button className="cart__order__buttons_cancel">
+                            <button
+                                className="cart__order__buttons_cancel"
+                                onClick={(e) => {
+                                    cancelReservation(e, cart);
+                                }}
+                            >
                                 CANCEL
                             </button>
                             <button
