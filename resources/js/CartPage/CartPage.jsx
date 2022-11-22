@@ -107,14 +107,16 @@ export default function CartPage() {
     // }
     const cancelReservation = (e, basket) => {
         e.preventDefault();
-
+        const data = {
+            order_status: 2,
+        }
         setCarts(carts.filter(cart => cart.id !== basket.id))
     }
 
     useEffect(()=>{
         loadCarts()
     }
-    , [setCarts])
+    , [])
 
     return (
         <div>
