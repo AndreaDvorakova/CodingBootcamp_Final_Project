@@ -8,6 +8,7 @@ const Newsletter = () => {
             email: email,
         });
         console.log(response.status);
+        setEmail("");
     };
 
     return (
@@ -17,6 +18,7 @@ const Newsletter = () => {
                 type="text"
                 name="email"
                 placeholder="email address"
+                value={email}
                 onChange={(e) => {
                     setEmail(e.target.value);
                 }}

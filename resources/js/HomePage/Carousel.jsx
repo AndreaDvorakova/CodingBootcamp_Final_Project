@@ -132,10 +132,7 @@ const Carousel = () => {
                                     Lozenges.Intensive Orange Sugar Free
                                     lozenges are the only sugar free lozenges
                                     containing flurbiprofen for fast, targeted,
-                                    and long lasting relief. Suitable for?
-                                    Intensive can be used to relieve sore
-                                    throats in adults and children over the age
-                                    of 12 years.
+                                    and long lasting relief.
                                 </p>
                             </div>
                             {/* <p>
