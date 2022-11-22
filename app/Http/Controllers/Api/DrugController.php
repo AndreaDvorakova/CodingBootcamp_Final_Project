@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewsletterEmail;
 use App\Mail\TestEmail;
+use Illuminate\Support\Facades\Notification;
 use Symfony\Component\Console\Input\Input;
+use Carbon\Carbon;
+
 
 class DrugController extends Controller
 {
@@ -33,7 +36,7 @@ class DrugController extends Controller
         return $drugs;
     }
 
-        public function sendConfirmation()
+    public function sendConfirmation(Request $request)
     {
         $user = Auth::user();
         
@@ -41,9 +44,14 @@ class DrugController extends Controller
         if(!$user) {
             return false;
         }
-        
+       
+        $date = Carbon::now();
+        $date->addDays(7);
+        $expiration =$date->toDateString();
 
-        Notification::send($user, new ReservationSuccessful());
+        Notification::send($user, new ReservationSuccessful($request->input('code'), $expiration));
+
+        return compact("user", "expiration");
     }
 
 public function sendTestEmail(Request $request) {
