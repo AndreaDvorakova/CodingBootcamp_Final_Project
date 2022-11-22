@@ -31,14 +31,14 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            'number' => ['required', 'string'],
+            'telephone_number' => ['required', 'string', 'regex:/^(\+420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/'],
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'telephone_number' => $input['number'],
+            'telephone_number' => $input['telephone_number'],
         ]);
     }
 }

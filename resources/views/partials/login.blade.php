@@ -39,11 +39,11 @@
                         </div>
 
                                             
-                            @if (Route::has('password.request'))
+                            {{-- @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
-                            @endif
+                            @endif --}}
                     </div>
 
 
@@ -56,8 +56,8 @@
                           @if (Route::has('register'))
                                 <a class="btn btn-link" 
                                     style="cursor: pointer"
-                                    data-toggle="modal" 
-                                    data-target="#registerModal">{{ __("Dont't have an account yet? Please Register") }}</a>
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#registerModal">{{ __("Dont't have an account yet? Please Register") }}</a>
                             @endif
                     </div>
 
