@@ -5,7 +5,7 @@
 
 
 
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="pharmacy">
             <div class="pharmacy__detail">
                 <h1 class="pharmacy__detail_name">{{ $pharmacy->name }}</h1>
@@ -39,6 +39,44 @@
             </div>
         </div>
 
+
+        {{-- serch bar --}}
+        {{-- <div class="search_bar" id="search_bar">
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search in {{$pharmacy->name}}" value="">
+            <ul id="myUL">
+                @foreach ($pharmacy->drugs as $drug)
+                <li>
+                    <a href="#" class="items__item-name" >{{ $drug->name }}</a>
+                </li>
+                @endforeach
+            </ul>
+        
+            
+            <script>
+                function myFunction() {
+                  // Declare variables
+                  var input, filter, ul, li, a, i, txtValue;
+                  input = document.getElementById('myInput');
+                  filter = input.value.toUpperCase();
+                  ul = document.getElementById("myUL");
+                  li = ul.getElementsByTagName('li');
+                
+                  // Loop through all list items, and hide those who don't match the search query
+                  for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    txtValue = a.textContent || a.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      li[i].style.display = "";
+                    } else {
+                      li[i].style.display = "none";
+                    }
+                  }
+                }
+                </script>
+        
+        </div> --}}
+
         <div class="items" id="items">
             {{-- <h1>Another drugs at this pharmacy</h1> --}}
             {{-- <p>{{$id->drug_id}}</p> --}}
@@ -47,9 +85,10 @@
 
             @foreach ($pharmacy->drugs as $drug)
                 <div class="items__item">
-                    <h5 class="items__item-name">{{ $drug->name }}</h5>
-                    <img class="items__item-img" src="/images/drugs/{{ $drug->image }}" alt="">
-                    <span>{{ $drug->pivot->drug_quantity }} quantity </span>
+                    <h5 class="items__item-name" >{{ $drug->name }}</h5>
+                    <a href="{{ url('drugs' , [ 'id' => $drug->id ]) }}/detail"><img class="items__item-img"  src="/images/drugs/{{ $drug->image }}" alt=""></a>
+                    <span >{{ $drug->pivot->drug_price }} Kc </span>
+                    {{-- <p >{{ $drug->pivot->drug_price }} Kc </p> --}}
                     <div id="myModal" class="modal">
                         <div class="modal-conten">
                             <span class="close">&times;</span>
@@ -57,11 +96,18 @@
                         </div>
                     </div>
                     <button class="items__item-button" id="myBtn">Description</button>
-
-
-
+                    
+                        
+                    
+{{--                     
+                    <div class="item_btn" id="item__baskets"> 
+                        <button class="btn_plus">-</button>
+                        <button class="btn_minus">+</button>
+                    </div>
+                    <button class="btn_add">Add to cart</button> --}}
+                    
                 </div>
-            @endforeach
+                @endforeach
 
             <script>
                 // Get the modal
@@ -162,5 +208,6 @@
         </div>
 
         @viteReactRefresh
-        @vite('resources/js/drugs.jsx')
+        @vite('resources/js/drugs.jsx'),
+        {{-- @vite('resources/js/details.jsx') --}}
     @endsection
