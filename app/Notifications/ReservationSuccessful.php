@@ -21,9 +21,10 @@ class ReservationSuccessful extends Notification
      *
      * @return void
      */
-    public function __construct($code)
+    public function __construct($code, $expiration)
     {
         $this->order = $code;
+        $this->expiration = $expiration;
     }
 
     /**
@@ -45,15 +46,15 @@ class ReservationSuccessful extends Notification
      */
     public function toMail($notifiable)
     {
-        $date = Carbon::now();
-        $date->addDays(7);
-        $expiration =$date->toDateString();
+        // $date = Carbon::now();
+        // $date->addDays(7);
+        // $expiration =$date->toDateString();
 
 
         return (new MailMessage)
-                    ->line('Your order no. '.$this->order.' was successful. Please pick up until '.$expiration)
+                    ->line('Your order no. '.$this->order.' was successful. Please pick up until '.$this->expiration)
                     // ->line(new HtmlString(`<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration=".$expiration/>`));
-                    ->action('QR Code', url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration='.$expiration));
+                    ->action('QR Code', url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=expiration='.$this->expiration));
                     // ->line('Thank you for using our application!');
     }
 

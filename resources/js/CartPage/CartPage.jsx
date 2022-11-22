@@ -7,9 +7,19 @@ export default function CartPage() {
     const [carts, setCarts] = useState([]);
     // const [show, setShow] = useState(true);
 
+    const [confirmationDisplayed, setConfirmationDisplayed] = useState(false);
+    const [confirmationData, setConfirmationData] = useState(null);
+
     const sendNotification = async (code) => {
         const response = await axios.post("/sendConfirmation", { code: code });
-        console.log(response.status);
+        console.log(response);
+        // setConfirmationPhone(response.data.telephone_number)
+        setConfirmationData({
+            sms_code: code,
+            telephone_number: response.data.user.telephone_number,
+            expiration_date: response.expiration_date,
+        });
+        setConfirmationDisplayed(true);
     };
 
     const loadCarts = async () => {
@@ -109,9 +119,9 @@ export default function CartPage() {
 
         sendNotification(data.sms_code);
 
-        location.assign(
-            `http://www.ipillgood.test/confirmation/${data.sms_code}`
-        );
+        // location.assign(
+        //     `http://www.ipillgood.test/confirmation/${data.sms_code}`
+        // );
 
         setCarts(carts.filter((cart) => cart.id !== basket.id));
     };
@@ -131,6 +141,11 @@ export default function CartPage() {
     return (
         <div>
             {/* {console.log(carts)} */}
+            {confirmationDisplayed ? (
+                <div>{confirmationData.sms_code}</div>
+            ) : (
+                <div>not confirmed yet</div>
+            )}
             {carts.map((cart, j) => {
                 return (
                     <div key={cart.id} className="cart">
