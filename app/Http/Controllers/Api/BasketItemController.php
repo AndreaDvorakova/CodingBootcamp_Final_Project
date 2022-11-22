@@ -17,7 +17,7 @@ class BasketItemController extends Controller
         // dd(Auth::user());
         if (auth('sanctum')->check()) {
             $user_id = auth('sanctum')->user()->id;
-            // $basket_id = $request->pharmacy_id;
+            $basket_id = $request->pharmacy_id;
             $drug_id = $request->drug_id;
             $drug_price = $request->drug_price;
             $quantity = $request->quantity;
@@ -35,7 +35,7 @@ class BasketItemController extends Controller
                     ]);
                 } else {
                     $basketItem->user_id = $user_id;
-                    // $basketItem->basket_id = $basket_id;
+                    $basketItem->basket_id = $basket_id;
                     $basketItem->drug_id = $drug_id;
                     $basketItem->drug_price = $drug_price;
                     $basketItem->quantity = $quantity;
@@ -66,9 +66,17 @@ class BasketItemController extends Controller
         }
     }
 
+    // public function update($id, Request $request)
+    // {
+    //     $order_status = $request->order_status;
+    //     $order_status_update = BasketItem::findOrFail($id);
+    //     $order_status_update->order_status = $order_status;
+    //     $order_status_update->save();
+    // }
+
     public function show()
     {
-        $basketsItems = BasketItem::with('pharmacy')->with('drug')->get()->groupBy('pharmacy_id');
+        $basketsItems = BasketItem::with('pharmacy')->with('drug')->where('order_status', 0)->get()->groupBy('pharmacy_id');
         return $basketsItems;
     }
 }
