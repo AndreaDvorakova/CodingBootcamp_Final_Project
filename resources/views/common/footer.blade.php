@@ -11,8 +11,8 @@
                 <a href="/home"><p>Home</p></a>
                 <a class="nav-link" 
                     style="cursor: pointer"
-                    data-toggle="modal" 
-                    data-target="#registerModal"><p>{{ __('Register') }}</p></a>
+                    data-bs-toggle="modal" 
+                    data-bs-target="#registerModal"><p>{{ __('Register') }}</p></a>
             </div>
             <div class="footer__right_company">
                 <h5>COMPANY</h5>

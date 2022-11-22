@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="registerModal">{{ __('Register') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -27,7 +27,7 @@
                         <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                             <span class="invalid-feedback" role="alert" id="emailError">
                                 <strong></strong>
@@ -39,7 +39,7 @@
                         <label for="passwordInput" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="passwordInput" type="password" class="form-control" name="password" required autocomplete="new-password">
+                            <input id="passwordInput" type="password" class="form-control" name="password" autocomplete="new-password">
 
                             <span class="invalid-feedback" role="alert" id="passwordError">
                                 <strong></strong>
@@ -51,17 +51,17 @@
                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                         </div>
                     </div>
 
                    <div class="form-group row">
-                        <label for="number" class="col-md-4 col-form-label text-md-right">{{ __('Telephone Number') }}</label>
+                        <label for="telephone_numberInput" class="col-md-4 col-form-label text-md-right">{{ __('Telephone Number') }}</label>
 
                         <div class="col-md-6">
-                            <input id="number" type="text" class="form-control" name="number" value="{{ old('number') }}"  autocomplete="number" autofocus>
+                            <input id="telephone_numberInput" type="tel" class="form-control" name="telephone_number" value="{{ old('telephone_number') }}"  autocomplete="telephone_number" placeholder="+ 420 xxx xxx xxx">
 
-                            <span class="invalid-feedback" role="alert" id="telephone-numberError">
+                            <span class="invalid-feedback" role="alert" id="telephone_numberError">
                                 <strong></strong>
                             </span>
                         </div>

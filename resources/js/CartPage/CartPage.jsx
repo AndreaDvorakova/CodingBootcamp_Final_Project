@@ -1,22 +1,37 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { redirect } from "react-router-dom";
 import swal from "sweetalert";
 
 export default function CartPage() {
-    const [carts, setCarts] = useState([])
+    const [carts, setCarts] = useState([]);
     // const [show, setShow] = useState(true);
-    
 
-    const loadCarts = async() => {
-        const response = await fetch('http://www.ipillgood.test/api/cart');
+    const [confirmationDisplayed, setConfirmationDisplayed] = useState(false);
+    const [confirmationData, setConfirmationData] = useState(null);
+
+    const sendNotification = async (code) => {
+        const response = await axios.post("/sendConfirmation", { code: code });
+        console.log(response);
+        // setConfirmationPhone(response.data.telephone_number)
+        setConfirmationData({
+            sms_code: code,
+            telephone_number: response.data.user.telephone_number,
+            expiration_date: response.expiration_date,
+        });
+        setConfirmationDisplayed(true);
+    };
+
+    const loadCarts = async () => {
+        const response = await fetch("http://www.ipillgood.test/api/cart");
         const data = await response.json();
-       
-        const cartArray = []
+
+        const cartArray = [];
         for (const [pharmacyId, orderFromPharmacy] of Object.entries(data)) {
             cartArray.push({
                 id: pharmacyId,
-                items: orderFromPharmacy
-            })
+                items: orderFromPharmacy,
+            });
         }
         console.log(cartArray);
         // for (let i = 0; i < cartArray.length; i++) {
@@ -26,48 +41,48 @@ export default function CartPage() {
         // }
         // const [quantity, setQuantity] = useState()
         setCarts(cartArray);
-    }
-
+    };
 
     const getTotalPrice = () => {
-        let totalPrice = 0
+        let totalPrice = 0;
         carts.forEach((basket) => {
-            totalPrice += getBasketPrice(basket)
-        })
-        return totalPrice
-    }
-
+            totalPrice += getBasketPrice(basket);
+        });
+        return totalPrice;
+    };
 
     const getBasketPrice = (basket) => {
-        let basketPrice = 0
+        let basketPrice = 0;
         basket.items.forEach((drug) => {
-            basketPrice += drug.drug_price * drug.quantity
+            basketPrice += drug.drug_price * drug.quantity;
         });
-        return basketPrice
-    }
+        return basketPrice;
+    };
 
     const addBasketQuantity = (e) => {
-
         e.preventDefault();
 
-        const newCarts = [...carts]
+        const newCarts = [...carts];
         // targeting value of the quantity and increasing by 1
-        newCarts[e.target.attributes["databasket"].value].items[e.target.attributes["dataitem"].value].quantity += 1;
- 
-       setCarts(newCarts);
-    //    console.log(carts);
-    }
+        newCarts[e.target.attributes["databasket"].value].items[
+            e.target.attributes["dataitem"].value
+        ].quantity += 1;
+
+        setCarts(newCarts);
+        //    console.log(carts);
+    };
 
     const removeBasketQuantity = (e) => {
-
         e.preventDefault();
 
-        const newCarts = [...carts]
+        const newCarts = [...carts];
         // targeting value of the quantity and decreasing by one.
-        newCarts[e.target.attributes["databasket"].value].items[e.target.attributes["dataitem"].value].quantity -= 1;
-        
-       setCarts(newCarts);
-    }
+        newCarts[e.target.attributes["databasket"].value].items[
+            e.target.attributes["dataitem"].value
+        ].quantity -= 1;
+
+        setCarts(newCarts);
+    };
 
     const reserveInPharmacy = (e, basket) => {
         e.preventDefault();
@@ -86,22 +101,30 @@ export default function CartPage() {
             order_status: 1,
             pharmacy_id: basket.items[0].pharmacy_id,
             // item_qties: item_qties
-        }
+        };
 
-        axios.post(`/reservation`, data).then(res => {
-            if(res.data.status === 201){
-              swal("Success",res.data.message,"success");
-            }else if(res.data.status === 409){
-              swal("Warning",res.data.message,"warning");
-            }else if(res.data.status === 401){
-              swal("Error",res.data.message,"error");
-            }else if(res.data.status === 404){
-              swal("Warning",res.data.message,"warning");
+        console.log(data.sms_code);
+
+        axios.post(`/reservation`, data).then((res) => {
+            if (res.data.status === 201) {
+                swal("Success", res.data.message, "success");
+            } else if (res.data.status === 409) {
+                swal("Warning", res.data.message, "warning");
+            } else if (res.data.status === 401) {
+                swal("Error", res.data.message, "error");
+            } else if (res.data.status === 404) {
+                swal("Warning", res.data.message, "warning");
             }
-          });
+        });
 
-            setCarts(carts.filter(cart => cart.id !== basket.id))
-    }
+        sendNotification(data.sms_code);
+
+        // location.assign(
+        //     `http://www.ipillgood.test/confirmation/${data.sms_code}`
+        // );
+
+        setCarts(carts.filter((cart) => cart.id !== basket.id));
+    };
     // const reserveInPharmacy = async (pharmacyId) => {
     //     console.log("MAKING RESERVATION IN PHARMACY ID"+pharmacyId)
     // }
@@ -121,49 +144,84 @@ export default function CartPage() {
     return (
         <div>
             {/* {console.log(carts)} */}
+            {confirmationDisplayed ? (
+                <div>{confirmationData.sms_code}</div>
+            ) : (
+                <div>not confirmed yet</div>
+            )}
             {carts.map((cart, j) => {
-
                 return (
                     <div key={cart.id} className="cart">
-                       {/* { console.log(cart)} */}
-                        <h3>Order: {cart.items[0].pharmacy.name} - {cart.items[0].pharmacy.city}</h3><hr />
+                        {/* { console.log(cart)} */}
+                        <h3>
+                            Order: {cart.items[0].pharmacy.name} -{" "}
+                            {cart.items[0].pharmacy.city}
+                        </h3>
+                        <hr />
                         {cart.items.map((item, i) => {
                             // console.log(cart.items);
                             return (
                                 <div key={i} className="cart__order">
-                                    <div className="cart__order__detail"><img
+                                    <div className="cart__order__detail">
+                                        <img
                                             className="cart__order__detail_image"
                                             src={`/images/drugs/${item.drug.image}`}
                                             alt={item.drug.name}
-                                            /> 
-                                           <div className="cart__order__detail_info">
-                                                <span>{item.drug.name}</span> 
-                                                
-                                           </div>
-                                           <span>{item.quantity}</span>
-                                           <span>Price: {item.drug_price * item.quantity}kc</span>
-                                           <div className="pharmacy__basket__order-to-cart">
-                                                <button className="cart__order__detail_remove" dataitem={i} databasket={j} onClick={removeBasketQuantity}>-</button>
-                                                <button className="cart__order__detail_add" dataitem={i} databasket={j} onClick={addBasketQuantity}>+</button> 
-                                                
-                                            </div>
-                                            
-
+                                        />
+                                        <div className="cart__order__detail_info">
+                                            <span>{item.drug.name}</span>
+                                        </div>
+                                        <span>{item.quantity}</span>
+                                        <span>
+                                            Price:{" "}
+                                            {item.drug_price * item.quantity}kc
+                                        </span>
+                                        <div className="pharmacy__basket__order-to-cart">
+                                            <button
+                                                className="cart__order__detail_remove"
+                                                dataitem={i}
+                                                databasket={j}
+                                                onClick={removeBasketQuantity}
+                                            >
+                                                -
+                                            </button>
+                                            <button
+                                                className="cart__order__detail_add"
+                                                dataitem={i}
+                                                databasket={j}
+                                                onClick={addBasketQuantity}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
                                     </div>
-                                </div> 
-                            )
+                                </div>
+                            );
                         })}
                         Total: {getBasketPrice(cart)}
                         <div className="cart__order__buttons">
-                            <button className="cart__order__buttons_cancel" onClick={(e) => {cancelReservation(e, cart)}}>CANCEL</button>
-                            <button className="cart__order__buttons_reserve" onClick={(e) => {reserveInPharmacy(e, cart)}}>RESERVE</button>
+                            <button
+                                className="cart__order__buttons_cancel"
+                                onClick={(e) => {
+                                    cancelReservation(e, cart);
+                                }}
+                            >
+                                CANCEL
+                            </button>
+                            <button
+                                className="cart__order__buttons_reserve"
+                                onClick={(e) => {
+                                    reserveInPharmacy(e, cart);
+                                }}
+                            >
+                                RESERVE
+                            </button>
                         </div>
                         <hr />
                     </div>
-                )
+                );
             })}
             Total: {carts && getTotalPrice()}
         </div>
-    )
-
+    );
 }
