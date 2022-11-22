@@ -14,12 +14,18 @@ export default function CartPage() {
         const response = await axios.post("/sendConfirmation", { code: code });
         console.log(response);
         // setConfirmationPhone(response.data.telephone_number)
-        setConfirmationData({
+        // setConfirmationData({
+        //     sms_code: code,
+        //     telephone_number: response.data.user.telephone_number,
+        //     expiration_date: response.expiration_date,
+        // });
+        // setConfirmationDisplayed(true);
+        return {
             sms_code: code,
             telephone_number: response.data.user.telephone_number,
             expiration_date: response.expiration_date,
-        });
-        setConfirmationDisplayed(true);
+        };
+        // setConfirmationDisplayed(true);
     };
 
     const loadCarts = async () => {
@@ -85,7 +91,9 @@ export default function CartPage() {
     };
 
     const reserveInPharmacy = (e, basket) => {
+        console.log("click");
         e.preventDefault();
+        e.target.disabled = true;
 
         // console.log(basket);
         // const item_qties = basket.items.map((basket_item) => {
@@ -105,9 +113,21 @@ export default function CartPage() {
 
         console.log(data.sms_code);
 
-        axios.post(`/reservation`, data).then((res) => {
+        axios.post(`/reservation`, data).then(async (res) => {
             if (res.data.status === 201) {
-                swal("Success", res.data.message, "success");
+                // swal("Success", res.data.message, "success");
+                const confirmationData = await sendNotification(data.sms_code);
+                setCarts(carts.filter((cart) => cart.id !== basket.id));
+                swal({
+                    title: "Success!!",
+                    text:
+                        "Your Order no. " +
+                        confirmationData.sms_code +
+                        " was successful. SMS confirmation of your order has been sent to no. " +
+                        confirmationData.telephone_number +
+                        ". Please pick your order until " +
+                        confirmationData.expiration_date,
+                });
             } else if (res.data.status === 409) {
                 swal("Warning", res.data.message, "warning");
             } else if (res.data.status === 401) {
@@ -117,13 +137,9 @@ export default function CartPage() {
             }
         });
 
-        sendNotification(data.sms_code);
-
         // location.assign(
         //     `http://www.ipillgood.test/confirmation/${data.sms_code}`
         // );
-
-        setCarts(carts.filter((cart) => cart.id !== basket.id));
     };
     // const reserveInPharmacy = async (pharmacyId) => {
     //     console.log("MAKING RESERVATION IN PHARMACY ID"+pharmacyId)
@@ -141,11 +157,11 @@ export default function CartPage() {
     return (
         <div>
             {/* {console.log(carts)} */}
-            {confirmationDisplayed ? (
+            {/* {confirmationDisplayed ? (
                 <div>{confirmationData.sms_code}</div>
             ) : (
                 <div>not confirmed yet</div>
-            )}
+            )} */}
             {carts.map((cart, j) => {
                 return (
                     <div key={cart.id} className="cart">
@@ -158,7 +174,7 @@ export default function CartPage() {
                         {cart.items.map((item, i) => {
                             // console.log(cart.items);
                             return (
-                                <div key={i} className="cart__order">
+                                <div key={item.id} className="cart__order">
                                     <div className="cart__order__detail">
                                         <img
                                             className="cart__order__detail_image"
