@@ -131,8 +131,23 @@ export default function CartPage() {
     const cancelReservation = (e, basket) => {
         e.preventDefault();
         const data = {
+            total_price: 0,
+            sms_code: Math.floor(100000 + Math.random() * 900000),
             order_status: 2,
+            pharmacy_id: basket.items[0].pharmacy_id,
         }
+
+        axios.post(`/reservation`, data).then((res) => {
+            if (res.data.status === 201) {
+                swal("Success", res.data.message, "success");
+            } else if (res.data.status === 409) {
+                swal("Warning", res.data.message, "warning");
+            } else if (res.data.status === 401) {
+                swal("Error", res.data.message, "error");
+            } else if (res.data.status === 404) {
+                swal("Warning", res.data.message, "warning");
+            }
+        });
         setCarts(carts.filter(cart => cart.id !== basket.id))
     }
 
@@ -144,11 +159,11 @@ export default function CartPage() {
     return (
         <div>
             {/* {console.log(carts)} */}
-            {confirmationDisplayed ? (
+            {/* {confirmationDisplayed ? (
                 <div>{confirmationData.sms_code}</div>
             ) : (
                 <div>not confirmed yet</div>
-            )}
+            )} */}
             {carts.map((cart, j) => {
                 return (
                     <div key={cart.id} className="cart">
@@ -221,7 +236,7 @@ export default function CartPage() {
                     </div>
                 );
             })}
-            Total: {carts && getTotalPrice()}
+            {getTotalPrice() == 0 ? <img src="/empty_cart.png" alt="" /> : "Total:" + getTotalPrice()}
         </div>
     );
 }
