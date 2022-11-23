@@ -18,6 +18,8 @@ export default defineConfig({
                 "resources/js/newsletter_entry.jsx",
                 "resources/js/details.jsx",
                 "resources/js/cart.jsx",
+                'resources/js/search.jsx',
+                'resources/css/detail.scss',
             ],
             refresh: true,
         }),

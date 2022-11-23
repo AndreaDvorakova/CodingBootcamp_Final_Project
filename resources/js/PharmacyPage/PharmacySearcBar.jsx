@@ -9,7 +9,7 @@ const SearchBarDropdown = () => {
 
     const loadDrugs = async () => {
         const response = await fetch(
-            `http://www.ipillgood.test/api/drugs?name=${searchQuery}`
+            `/api/drugs?name=${searchQuery}`
         );
         const data = await response.json();
         setDrugs(data);

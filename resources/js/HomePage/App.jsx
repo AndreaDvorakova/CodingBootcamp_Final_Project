@@ -7,7 +7,7 @@ export default function App() {
 
     const loadDrugs = async () => {
         const response = await fetch(
-            `http://www.ipillgood.test/api/drugs?offset=${offset}&limit=9`
+            `/api/drugs?offset=${offset}&limit=9`
         );
         const data = await response.json();
         setDrugs(data);

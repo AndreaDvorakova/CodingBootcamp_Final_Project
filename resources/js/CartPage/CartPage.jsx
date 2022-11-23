@@ -29,7 +29,7 @@ export default function CartPage() {
     };
 
     const loadCarts = async () => {
-        const response = await fetch("http://www.ipillgood.test/api/cart");
+        const response = await fetch("api/cart");
         const data = await response.json();
 
         const cartArray = [];

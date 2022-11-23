@@ -34,15 +34,14 @@ class DrugController extends Controller
     }
 
 
-    public function confirmation($code) {
+    public function confirmation($code)
+    {
         $user = Auth::user();
 
         $date = Carbon::now();
         $date->addDays(7);
-        $expiration =$date->toDateString();
-        
-        return view('confirmation', compact('user', 'expiration','code'));
+        $expiration = $date->toDateString();
+
+        return view('confirmation', compact('user', 'expiration', 'code'));
     }
-
-
 }
