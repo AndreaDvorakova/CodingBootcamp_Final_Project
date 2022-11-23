@@ -29,7 +29,7 @@ export default function CartPage() {
     };
 
     const loadCarts = async () => {
-        const response = await fetch("http://www.ipillgood.test/api/cart");
+        const response = await fetch("api/cart");
         const data = await response.json();
 
         const cartArray = [];
@@ -147,13 +147,21 @@ export default function CartPage() {
     // }
     const cancelReservation = (e, basket) => {
         e.preventDefault();
+        const data = {
+            total_price: 0,
+            sms_code: Math.floor(100000 + Math.random() * 900000),
+            order_status: 2,
+            pharmacy_id: basket.items[0].pharmacy_id,
+        }
 
-        setCarts(carts.filter((cart) => cart.id !== basket.id));
-    };
+        axios.post(`/reservation`, data)
+        setCarts(carts.filter(cart => cart.id !== basket.id))
+    }
 
-    useEffect(() => {
-        loadCarts();
-    }, [setCarts]);
+    useEffect(()=>{
+        loadCarts()
+    }
+    , [])
 
     return (
         <div>
@@ -235,7 +243,7 @@ export default function CartPage() {
                     </div>
                 );
             })}
-            Total: {carts && getTotalPrice()}
+            {getTotalPrice() == 0 ? <img src="/empty-cart.png" alt="" /> : "Total:" + getTotalPrice()}
         </div>
     );
 }

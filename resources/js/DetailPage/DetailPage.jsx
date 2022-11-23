@@ -11,7 +11,7 @@ export default function DetailPage() {
     const [selectedCity, setSelectedCity] = useState("all");
     const loadDrugs = async () => {
         const response = await fetch(
-            `http://www.ipillgood.test/api/pharmacy-items/${id.content}`
+            `/api/pharmacy-items/${id.content}`
         );
 
         const data = await response.json();
