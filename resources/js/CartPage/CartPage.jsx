@@ -154,17 +154,7 @@ export default function CartPage() {
             pharmacy_id: basket.items[0].pharmacy_id,
         }
 
-        axios.post(`/reservation`, data).then((res) => {
-            if (res.data.status === 201) {
-                swal("Success", res.data.message, "success");
-            } else if (res.data.status === 409) {
-                swal("Warning", res.data.message, "warning");
-            } else if (res.data.status === 401) {
-                swal("Error", res.data.message, "error");
-            } else if (res.data.status === 404) {
-                swal("Warning", res.data.message, "warning");
-            }
-        });
+        axios.post(`/reservation`, data)
         setCarts(carts.filter(cart => cart.id !== basket.id))
     }
 
@@ -253,7 +243,7 @@ export default function CartPage() {
                     </div>
                 );
             })}
-            {getTotalPrice() == 0 ? <img src="/empty_cart.png" alt="" /> : "Total:" + getTotalPrice()}
+            {getTotalPrice() == 0 ? <img src="/empty-cart.png" alt="" /> : "Total:" + getTotalPrice()}
         </div>
     );
 }
