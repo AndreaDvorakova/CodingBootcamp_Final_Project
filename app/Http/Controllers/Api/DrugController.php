@@ -28,7 +28,7 @@ class DrugController extends Controller
     public function searchBar(Request $request)
     {
         if ($request->name) {
-            $drugs = Drug::where('name', 'LIKE', '%'.$request->name.'%')->get();
+            $drugs = Drug::where('name', 'LIKE', '%' . $request->name . '%')->get();
         } else {
             $drugs = Drug::offset($request->offset)->limit($request->limit)->get();
         }
@@ -38,31 +38,32 @@ class DrugController extends Controller
 
     public function sendConfirmation(Request $request)
     {
+        // dd(config('mail.mailers.smtp.port'));
         $user = Auth::user();
-        
-        
-        if(!$user) {
+
+
+        if (!$user) {
             return false;
         }
-       
+
         $date = Carbon::now();
         $date->addDays(7);
-        $expiration =$date->toDateString();
+        $expiration = $date->toDateString();
 
         Notification::send($user, new ReservationSuccessful($request->input('code'), $expiration));
 
         return compact("user", "expiration");
     }
 
-public function sendTestEmail(Request $request) {
+    public function sendTestEmail(Request $request)
+    {
 
         $data = Drug::limit(2)->get();
-        
-        
+
+
         Mail::to($request->email)
             // ->cc('copy@example.com')
             // ->bcc('hidden_copy@example.com')
             ->send(new TestEmail($data));
-
     }
 }
