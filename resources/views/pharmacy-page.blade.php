@@ -42,7 +42,6 @@
 
         {{-- serch bar --}}
         {{-- <div class="search_bar" id="search_bar">
-
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search in {{$pharmacy->name}}" value="">
             <ul id="myUL">
                 @foreach ($pharmacy->drugs as $drug)
@@ -112,35 +111,26 @@
             <script>
                 // Get the modal
                 var modal = document.getElementById("myModal");
-
                 // Get the button that opens the modal
                 var btns = document.querySelectorAll("#myBtn");
-
                 // Get the <span> element that closes the modal
                 var spans = document.querySelectorAll(".close");
                 // console.log(spans);
-
                 // When the user clicks the button, open the modal 
                 btns.forEach(btn => {
-
                     btn.onclick = function(e) {
                         console.log(e);
                         e.target.parentNode.childNodes[7].style.display = "block";
                         //   modal.innerText=e.target.parentElement.childNodes[2]
-
                     }
                 });
-
-
                 // When the user clicks on <span> (x), close the modal
                 spans.forEach(span => {
-
                     span.onclick = function(e) {
                         console.log(e);
                         e.target.parentNode.parentNode.style.display = "none";
                     }
                 })
-
                 // When the user clicks anywhere outside of the modal, close it
                 // window.onclick = function(event) {
                 //     if (event.target == modal) {
