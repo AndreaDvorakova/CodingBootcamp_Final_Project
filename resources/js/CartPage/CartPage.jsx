@@ -265,7 +265,7 @@ export default function CartPage() {
                     </div>
                 );
             })}
-            {getTotalPrice() == 0 ? <img src="/empty-cart.png" alt="" /> : "Total:" + getTotalPrice()}
+            {getTotalPrice() == 0 ? <img src={"/empty-cart.png"} alt="" /> : "Total:" + getTotalPrice()}
         </div>
     );
 }
