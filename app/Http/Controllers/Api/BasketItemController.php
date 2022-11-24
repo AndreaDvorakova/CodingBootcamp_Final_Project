@@ -22,13 +22,14 @@ class BasketItemController extends Controller
             $drug_price = $request->drug_price;
             $quantity = $request->quantity;
             $pharmacy_id = $request->pharmacy_id;
+            $order_status = $request->order_status;
             $basketItem = new BasketItem;
 
             $drugCheck = Drug::where('id', $drug_id)->first();
             // dd($request);
             if ($drugCheck) {
                 // check to see if item is already added to the cart
-                if (BasketItem::where('drug_id', $drug_id)->where('pharmacy_id', $pharmacy_id)->where('user_id', $user_id)->exists()) {
+                if (BasketItem::where('drug_id', $drug_id)->where('pharmacy_id', $pharmacy_id)->where('user_id', $user_id)->where('order_status', 0)->exists()) {
                     return response()->json([
                         'status' => 409,
                         'message' => $drugCheck->name . 'Already added to cart',
@@ -40,6 +41,7 @@ class BasketItemController extends Controller
                     $basketItem->drug_price = $drug_price;
                     $basketItem->quantity = $quantity;
                     $basketItem->pharmacy_id = $pharmacy_id;
+                    $basketItem->order_status = $order_status;
                     $basketItem->save();
 
                     return response()->json([

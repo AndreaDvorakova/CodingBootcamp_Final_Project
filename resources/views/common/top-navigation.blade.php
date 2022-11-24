@@ -1,6 +1,6 @@
 <nav class="navigation">
     
-    <div class="navigation__logo"><a href='/home'><img class="navigation__img" src="/favicon.jpg" alt="Company Logo"></a></div>
+    <div class="navigation__logo"><a href='/'><img class="navigation__img" src="/favicon.jpg" alt="Company Logo"></a></div>
     <div class="navigation__search-bar" id="search-bar"></div>
     @viteReactRefresh
     @vite('resources/js/search.jsx')

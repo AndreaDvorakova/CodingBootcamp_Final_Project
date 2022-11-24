@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export default function CartPage() {
     const [carts, setCarts] = useState([]);
@@ -80,14 +81,16 @@ export default function CartPage() {
 
     const removeBasketQuantity = (e) => {
         e.preventDefault();
-
         const newCarts = [...carts];
+        if (newCarts[e.target.attributes["databasket"].value].items[
+            e.target.attributes["dataitem"].value
+        ].quantity > 1){
         // targeting value of the quantity and decreasing by one.
         newCarts[e.target.attributes["databasket"].value].items[
             e.target.attributes["dataitem"].value
         ].quantity -= 1;
 
-        setCarts(newCarts);
+        setCarts(newCarts)};
     };
 
     const reserveInPharmacy = (e, basket) => {
@@ -154,8 +157,28 @@ export default function CartPage() {
             pharmacy_id: basket.items[0].pharmacy_id,
         }
 
-        axios.post(`/reservation`, data)
-        setCarts(carts.filter(cart => cart.id !== basket.id))
+        axios.post(`/reservation`, data).then(res => {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'Canceled!',
+                    'Your item has been canceled.',
+                    'success'
+                  )
+                }
+              })
+
+        })
+
+
+        setCarts(carts.filter(cart => cart.id !== basket.id));
     }
 
     useEffect(()=>{
@@ -220,7 +243,7 @@ export default function CartPage() {
                                 </div>
                             );
                         })}
-                        Total: {getBasketPrice(cart)}
+                        <div className="cart__order__total">Total: {getBasketPrice(cart)}</div>
                         <div className="cart__order__buttons">
                             <button
                                 className="cart__order__buttons_cancel"
