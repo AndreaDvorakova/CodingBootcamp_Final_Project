@@ -11,7 +11,7 @@ export default function DetailPage() {
     const [selectedCity, setSelectedCity] = useState("all");
     const loadDrugs = async () => {
         const response = await fetch(
-            `http://www.ipillgood.test/api/pharmacy-items/${id.content}`
+            `/api/pharmacy-items/${id.content}`
         );
 
         const data = await response.json();
@@ -103,7 +103,7 @@ export default function DetailPage() {
                                     <h4>{pharmacyItem.pharmacy.name}</h4>
                                 </a>
                                 <span className="pharmacy__basket__address">
-                                    Address
+                                    Address:
                                 </span>
                                 <span className="pharmacy__basket__street">
                                     {pharmacyItem.pharmacy.address_line}
@@ -115,11 +115,11 @@ export default function DetailPage() {
                                     + {pharmacyItem.pharmacy.telephone_number}
                                 </span>
                             </span>
-                            <span className="pharmacy__basket__hours">
-                                Hours:{" "}
+                            {/* <span className="pharmacy__basket__hours">
+                                Hours:{" "} <br />
                                 {pharmacyItem.pharmacy.work_hours_open_at} -{" "}
                                 {pharmacyItem.pharmacy.work_hours_close_at}
-                            </span>
+                            </span> */}
                             <div className="pharmacy__basket__order">
                                 <DrugsToCart
                                     key={pharmacyItem.id}

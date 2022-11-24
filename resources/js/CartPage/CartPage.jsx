@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export default function CartPage() {
     const [carts, setCarts] = useState([]);
@@ -29,7 +30,7 @@ export default function CartPage() {
     };
 
     const loadCarts = async () => {
-        const response = await fetch("http://www.ipillgood.test/api/cart");
+        const response = await fetch("api/cart");
         const data = await response.json();
 
         const cartArray = [];
@@ -80,14 +81,16 @@ export default function CartPage() {
 
     const removeBasketQuantity = (e) => {
         e.preventDefault();
-
         const newCarts = [...carts];
+        if (newCarts[e.target.attributes["databasket"].value].items[
+            e.target.attributes["dataitem"].value
+        ].quantity > 1){
         // targeting value of the quantity and decreasing by one.
         newCarts[e.target.attributes["databasket"].value].items[
             e.target.attributes["dataitem"].value
         ].quantity -= 1;
 
-        setCarts(newCarts);
+        setCarts(newCarts)};
     };
 
     const reserveInPharmacy = (e, basket) => {
@@ -147,13 +150,41 @@ export default function CartPage() {
     // }
     const cancelReservation = (e, basket) => {
         e.preventDefault();
+        const data = {
+            total_price: 0,
+            sms_code: Math.floor(100000 + Math.random() * 900000),
+            order_status: 2,
+            pharmacy_id: basket.items[0].pharmacy_id,
+        }
 
-        setCarts(carts.filter((cart) => cart.id !== basket.id));
-    };
+        axios.post(`/reservation`, data).then(res => {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'Canceled!',
+                    'Your item has been canceled.',
+                    'success'
+                  )
+                }
+              })
 
-    useEffect(() => {
-        loadCarts();
-    }, [setCarts]);
+        })
+
+
+        setCarts(carts.filter(cart => cart.id !== basket.id));
+    }
+
+    useEffect(()=>{
+        loadCarts()
+    }
+    , [])
 
     return (
         <div>
@@ -212,7 +243,7 @@ export default function CartPage() {
                                 </div>
                             );
                         })}
-                        Total: {getBasketPrice(cart)}
+                        <div className="cart__order__total">Total: {getBasketPrice(cart)}</div>
                         <div className="cart__order__buttons">
                             <button
                                 className="cart__order__buttons_cancel"
@@ -235,7 +266,7 @@ export default function CartPage() {
                     </div>
                 );
             })}
-            Total: {carts && getTotalPrice()}
+            {getTotalPrice() == 0 ? <img src="/empty-cart.png" alt="" /> : "Total:" + getTotalPrice()}
         </div>
     );
 }

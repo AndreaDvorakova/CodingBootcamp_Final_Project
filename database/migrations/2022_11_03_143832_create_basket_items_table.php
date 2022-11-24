@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('drug_id')->nullable();
             $table->foreignId('pharmacy_id');
-            $table->integer('order_status')->default('0');
+            $table->integer('order_status');
             $table->integer('quantity');
             $table->integer('drug_price');
             $table->timestamps();

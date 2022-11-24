@@ -27,6 +27,7 @@ export default function DrugsToCart(props) {
   }
 
   const removeFromCart = () => {
+      if (amountInCart > 1) {
       setAmountInCart(Math.max(0, amountInCart - 1));
 
       removeItemFromCart(drug.id)
@@ -34,6 +35,7 @@ export default function DrugsToCart(props) {
       setPrice(Math.max(drugPrice, price - drugPrice))
 
       setInStock(Math.min(drugQuantity, inStock + 1));
+      }
   }
   // onClick will submit the current items to the Baskets table in the database and will use that to display on the cart page.
   const submitAddToCart = (e) => {
@@ -45,6 +47,7 @@ export default function DrugsToCart(props) {
       drug_price: drugPrice,
       quantity: amountInCart,
       pharmacy_id: pharmacy_id,
+      order_status: 0,
     }
 
     axios.post('/add-to-cart', data).then(res => {
