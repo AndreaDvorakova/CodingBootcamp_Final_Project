@@ -80,8 +80,8 @@
         
         <div class="mail__row_right">
             <h2>{{$test_data[0]->name}}</h2>
-            <img src="/images/drugs/{{$test_data[0]->image}}" alt="Pill Image"> 
-            <a href="/drugs/{{$test_data[0]->id}}/detail"><button>Discover more</button></a>           
+            <img src="https://ipillgood.codeboot.cz/images/drugs/{{$test_data[0]->image}}" alt="Pill Image"> 
+            <a href="https://ipillgood.codeboot.cz/drugs/{{$test_data[0]->id}}/detail"><button>Discover more</button></a>           
         </div>      
     </div>
     
