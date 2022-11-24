@@ -46,9 +46,19 @@ hr {
         display: flex;
         flex-direction: row;
 
+        &__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         &__buttons {
             display: flex;
             justify-content: flex-end;
+
+            &__total {
+                justify-content: flex-start;
+            }
 
             &_reserve {
                 display: flex;
@@ -106,9 +116,7 @@ hr {
             &_info {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                margin-top: 20px;
-                margin-left: 10px;
+                justify-content: flex-start;
             }
 
             &_image {

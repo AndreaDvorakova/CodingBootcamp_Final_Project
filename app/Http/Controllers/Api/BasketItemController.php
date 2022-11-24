@@ -78,7 +78,7 @@ class BasketItemController extends Controller
 
     public function show()
     {
-        $basketsItems = BasketItem::with('pharmacy')->with('drug')->where('order_status', 0)->get()->groupBy('pharmacy_id');
+        $basketsItems = BasketItem::with('pharmacy')->with('drug')->where('order_status', 0)->where('user_id', auth('sanctum')->user()->id)->get()->groupBy('pharmacy_id');
         return $basketsItems;
     }
 }

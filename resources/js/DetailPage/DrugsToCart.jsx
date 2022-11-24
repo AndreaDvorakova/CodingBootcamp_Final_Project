@@ -11,6 +11,7 @@ export default function DrugsToCart(props) {
   const [amountInCart, setAmountInCart] = useState(1);
   const [price, setPrice] = useState(drugPrice);
   const [inStock, setInStock] = useState(drugQuantity);
+  const [addedToCart, SetAddedToCart] = useState(false);
 
   const addToCart = () => {
       setAmountInCart(Math.min(drugQuantity, amountInCart + 1));
@@ -57,10 +58,11 @@ export default function DrugsToCart(props) {
           title: 'Added to Cart',
           footer: '<a href="/cart">Go to Cart</a>',
         });
+        SetAddedToCart(true);
       }else if(res.data.status === 409){
         swal("Warning",res.data.message,"warning");
       }else if(res.data.status === 401){
-        swal("Error",res.data.message,"error");
+        swal("Warning",res.data.message,"warning");
       }else if(res.data.status === 404){
         swal("Warning",res.data.message,"warning");
       }
@@ -79,7 +81,15 @@ export default function DrugsToCart(props) {
               </div>
               <span>Price: {price}kc</span>
               
-              <button className="pharmacy__basket__button" onClick={submitAddToCart}>{amountInCart > 1 ? `Add ${amountInCart}  To Cart`  : 'Add To Cart'}</button>                 
+              <button className="pharmacy__basket__button" onClick={submitAddToCart}>
+                {
+                addedToCart 
+                ? 'Added To Cart' 
+                : amountInCart > 1 
+                ? `Add ${amountInCart} To Cart`  
+                : 'Add To Cart'
+                }
+              </button>                 
           </>
 
       )

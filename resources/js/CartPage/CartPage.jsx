@@ -24,7 +24,7 @@ export default function CartPage() {
         return {
             sms_code: code,
             telephone_number: response.data.user.telephone_number,
-            expiration_date: response.expiration_date,
+            expiration_date: response.data.expiration,
         };
         // setConfirmationDisplayed(true);
     };
@@ -123,6 +123,7 @@ export default function CartPage() {
                 const confirmationData = await sendNotification(data.sms_code);
                 setCarts(carts.filter((cart) => cart.id !== basket.id));
                 swal({
+                    icon: 'success',
                     title: "Success!!",
                     text:
                         "Your Order no. " +
@@ -130,7 +131,7 @@ export default function CartPage() {
                         " was successful. SMS confirmation of your order has been sent to no. " +
                         confirmationData.telephone_number +
                         ". Please pick your order until " +
-                        confirmationData.expiration_date,
+                        confirmationData.expiration_date
                 });
             } else if (res.data.status === 409) {
                 swal("Warning", res.data.message, "warning");
@@ -159,20 +160,9 @@ export default function CartPage() {
 
         axios.post(`/reservation`, data).then(res => {
             Swal.fire({
-                title: 'Are you sure?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, cancel it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  Swal.fire(
-                    'Canceled!',
-                    'Your item has been canceled.',
-                    'success'
-                  )
-                }
+                title: 'Canceled',
+                icon: 'success',
+                text: 'Your order has been canceled',
               })
 
         })
@@ -218,7 +208,7 @@ export default function CartPage() {
                                         </div>
                                         <span>{item.quantity}</span>
                                         <span>
-                                            Price:{" "}
+                                            <strong>Price:</strong>{" "}
                                             {item.drug_price * item.quantity}kc
                                         </span>
                                         <div className="pharmacy__basket__order-to-cart">
@@ -243,25 +233,34 @@ export default function CartPage() {
                                 </div>
                             );
                         })}
-                        <div className="cart__order__total">Total: {getBasketPrice(cart)}</div>
-                        <div className="cart__order__buttons">
-                            <button
-                                className="cart__order__buttons_cancel"
-                                onClick={(e) => {
-                                    cancelReservation(e, cart);
-                                }}
-                            >
-                                CANCEL
-                            </button>
-                            <button
-                                className="cart__order__buttons_reserve"
-                                onClick={(e) => {
-                                    reserveInPharmacy(e, cart);
-                                }}
-                            >
-                                RESERVE
-                            </button>
+
+                        <div className="cart__order__footer">
+                            <div className="cart__order__buttons__total">
+                                    <strong>Total: </strong>
+                                    {getBasketPrice(cart)}kc
+                            </div>
+                            
+                            <div className="cart__order__buttons">
+                                
+                                <button
+                                    className="cart__order__buttons_cancel"
+                                    onClick={(e) => {
+                                        cancelReservation(e, cart);
+                                    }}
+                                >
+                                    CANCEL
+                                </button>
+                                <button
+                                    className="cart__order__buttons_reserve"
+                                    onClick={(e) => {
+                                        reserveInPharmacy(e, cart);
+                                    }}
+                                >
+                                    RESERVE
+                                </button>
+                            </div>
                         </div>
+                        
                         <hr />
                     </div>
                 );
