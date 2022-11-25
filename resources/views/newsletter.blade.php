@@ -71,7 +71,7 @@
 
 
 <body>
-    <img class="newsletter__header_image" src="/newsletter.jpg" alt="Newsletter header image">
+    <img class="newsletter__header_image" src="https://ipillgood.codeboot.cz/newsletter.jpg" alt="Newsletter header image">
 
     <h1 class="newsletter__header_headline">How can vitamins help you in the Winter?</h1>
     <div class="mail__row">
@@ -80,8 +80,8 @@
         
         <div class="mail__row_right">
             <h2>{{$test_data[0]->name}}</h2>
-            <img src="/images/drugs/{{$test_data[0]->image}}" alt="Pill Image"> 
-            <a href="/drugs/{{$test_data[0]->id}}/detail"><button>Discover more</button></a>           
+            <img src="https://ipillgood.codeboot.cz/images/drugs/{{$test_data[0]->image}}" alt="Pill Image"> 
+            <a href="https://ipillgood.codeboot.cz/drugs/{{$test_data[0]->id}}/detail"><button>Discover more</button></a>           
         </div>      
     </div>
     
@@ -90,8 +90,8 @@
         
         <div class="mail__row_right">
             <h2>{{$test_data[1]->name}}</h2>
-            <img src="/images/drugs/{{$test_data[1]->image}}" alt="Pill Image"> 
-            <a href="/drugs/{{$test_data[1]->id}}/detail"><button>Discover more</button></a>           
+            <img src="https://ipillgood.codeboot.cz/images/drugs/{{$test_data[1]->image}}" alt="Pill Image"> 
+            <a href="https://ipillgood.codeboot.cz/drugs/{{$test_data[1]->id}}/detail"><button>Discover more</button></a>           
         </div> 
         <p>
         We all know that you get vitamin D from time spent in the sun and that it’s very good for you. This vitamin plays a major role in how well your immune system functions, as well as your muscles and nerves throughout your body. Without proper levels of vitamin D, we cannot absorb calcium properly. Vitamin D has been shown to combat colon cancer, or at least reduce your risk of getting it. The vitamin can help you if you suffer from inflammatory bowel diseases and syndromes. It is often prescribed for those suffering from Irritable Bowel Syndrome or Crohn’s Disease. Our biggest source of vitamin D is the sun’s UV rays. When they hit our skin, our bodies produce vitamin D. You can also include various sources in your diet to ensure that you have enough. Sources include fish, egg yolks, liver, fortified milk and cereal.</p>     

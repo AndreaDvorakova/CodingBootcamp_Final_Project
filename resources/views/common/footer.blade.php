@@ -8,7 +8,7 @@
         <div class="footer__right">
             <div class="footer__right_main">
                 <h5>MAIN MENU</h5>
-                <a href="/home"><p>Home</p></a>
+                <a href="/"><p>Home</p></a>
                 <a class="nav-link" 
                     style="cursor: pointer"
                     data-bs-toggle="modal" 
