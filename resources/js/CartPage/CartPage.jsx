@@ -187,10 +187,12 @@ export default function CartPage() {
             {carts.map((cart, j) => {
                 return (
                     <div key={cart.id} className="cart">
-                        {/* { console.log(cart)} */}
+                        { console.log(cart)}
                         <h3>
-                            Order: {cart.items[0].pharmacy.name} -{" "}
-                            {cart.items[0].pharmacy.city}
+                            Order:                                 <a
+                                    href={`/pharmacy-page/${cart.items[0].pharmacy.id}`}
+                                >{cart.items[0].pharmacy.name} -{" "}
+                            {cart.items[0].pharmacy.city}</a>
                         </h3>
                         <hr />
                         {cart.items.map((item, i) => {
@@ -206,11 +208,12 @@ export default function CartPage() {
                                         <div className="cart__order__detail_info">
                                             <span>{item.drug.name}</span>
                                         </div>
-                                        <span>{item.quantity}</span>
-                                        <span>
+                                        <span><strong>Qty: </strong>{item.quantity}</span>
+                                        <div className="cart__order__detail_price">
+                                        
                                             <strong>Price:</strong>{" "}
                                             {item.drug_price * item.quantity}kc
-                                        </span>
+                                        </div>
                                         <div className="pharmacy__basket__order-to-cart">
                                             <button
                                                 className="cart__order__detail_remove"
